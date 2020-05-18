@@ -29,17 +29,13 @@
         private void InitializeComponent()
         {
             this.label8 = new System.Windows.Forms.Label();
-            this.NgayMuon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HoTenDocGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TenSach = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MaPhieuMuon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LVPM = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GridViewPM = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,11 +50,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.datePickerNM = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.SoTienNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SoTienThu = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HoTenNhanVien = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewPM)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,42 +67,6 @@
             this.label8.TabIndex = 18;
             this.label8.Text = "DANH MỤC PHIẾU MƯỢN";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label8.Click += new System.EventHandler(this.Label8_Click);
-            // 
-            // NgayMuon
-            // 
-            this.NgayMuon.Text = "Ngày Mượn";
-            // 
-            // HoTenDocGia
-            // 
-            this.HoTenDocGia.Text = "Họ tên độc giả";
-            // 
-            // TenSach
-            // 
-            this.TenSach.Text = "Tên Sách";
-            // 
-            // MaPhieuMuon
-            // 
-            this.MaPhieuMuon.Text = "Mã PM";
-            // 
-            // LVPM
-            // 
-            this.LVPM.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.MaPhieuMuon,
-            this.TenSach,
-            this.HoTenDocGia,
-            this.NgayMuon,
-            this.SoTienNo,
-            this.SoTienThu,
-            this.HoTenNhanVien});
-            this.LVPM.HideSelection = false;
-            this.LVPM.Location = new System.Drawing.Point(6, 19);
-            this.LVPM.Name = "LVPM";
-            this.LVPM.Size = new System.Drawing.Size(717, 181);
-            this.LVPM.TabIndex = 1;
-            this.LVPM.UseCompatibleStateImageBehavior = false;
-            this.LVPM.View = System.Windows.Forms.View.Details;
-            this.LVPM.SelectedIndexChanged += new System.EventHandler(this.LVPM_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -164,13 +122,22 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.LVPM);
+            this.groupBox3.Controls.Add(this.GridViewPM);
             this.groupBox3.Location = new System.Drawing.Point(37, 410);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(729, 215);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
+            // 
+            // GridViewPM
+            // 
+            this.GridViewPM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewPM.Location = new System.Drawing.Point(6, 19);
+            this.GridViewPM.Name = "GridViewPM";
+            this.GridViewPM.Size = new System.Drawing.Size(717, 190);
+            this.GridViewPM.TabIndex = 19;
+            this.GridViewPM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPM_CellClick);
             // 
             // label1
             // 
@@ -191,7 +158,6 @@
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tên Sách:";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // groupBox1
             // 
@@ -216,7 +182,7 @@
             // cbTenSach
             // 
             this.cbTenSach.FormattingEnabled = true;
-            this.cbTenSach.Location = new System.Drawing.Point(81, 55);
+            this.cbTenSach.Location = new System.Drawing.Point(81, 51);
             this.cbTenSach.Name = "cbTenSach";
             this.cbTenSach.Size = new System.Drawing.Size(200, 21);
             this.cbTenSach.TabIndex = 22;
@@ -228,7 +194,6 @@
             this.cbHoTenNV.Name = "cbHoTenNV";
             this.cbHoTenNV.Size = new System.Drawing.Size(200, 21);
             this.cbHoTenNV.TabIndex = 21;
-            this.cbHoTenNV.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged_1);
             // 
             // label11
             // 
@@ -238,7 +203,6 @@
             this.label11.Size = new System.Drawing.Size(60, 13);
             this.label11.TabIndex = 20;
             this.label11.Text = "Họ tên NV:";
-            this.label11.Click += new System.EventHandler(this.Label11_Click);
             // 
             // txtSoTienThu
             // 
@@ -246,7 +210,6 @@
             this.txtSoTienThu.Name = "txtSoTienThu";
             this.txtSoTienThu.Size = new System.Drawing.Size(200, 20);
             this.txtSoTienThu.TabIndex = 19;
-            this.txtSoTienThu.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // label4
             // 
@@ -256,7 +219,6 @@
             this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Số tiền thu:";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // cbHoTenDocGia
             // 
@@ -265,7 +227,6 @@
             this.cbHoTenDocGia.Name = "cbHoTenDocGia";
             this.cbHoTenDocGia.Size = new System.Drawing.Size(200, 21);
             this.cbHoTenDocGia.TabIndex = 17;
-            this.cbHoTenDocGia.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // txtTienNo
             // 
@@ -307,19 +268,6 @@
             this.label3.Size = new System.Drawing.Size(64, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Ngày mượn:";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
-            // 
-            // SoTienNo
-            // 
-            this.SoTienNo.Text = "Số Tiền Nợ";
-            // 
-            // SoTienThu
-            // 
-            this.SoTienThu.Text = "Số Tiền Thu";
-            // 
-            // HoTenNhanVien
-            // 
-            this.HoTenNhanVien.Text = "Họ Tên NV";
             // 
             // QlyPM
             // 
@@ -336,6 +284,7 @@
             this.Load += new System.EventHandler(this.QlyPM_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewPM)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -345,11 +294,6 @@
         #endregion
 
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ColumnHeader NgayMuon;
-        private System.Windows.Forms.ColumnHeader HoTenDocGia;
-        private System.Windows.Forms.ColumnHeader TenSach;
-        private System.Windows.Forms.ColumnHeader MaPhieuMuon;
-        private System.Windows.Forms.ListView LVPM;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnSua;
@@ -369,9 +313,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbHoTenNV;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView GridViewPM;
         private System.Windows.Forms.ComboBox cbTenSach;
-        private System.Windows.Forms.ColumnHeader SoTienNo;
-        private System.Windows.Forms.ColumnHeader SoTienThu;
-        private System.Windows.Forms.ColumnHeader HoTenNhanVien;
     }
 }

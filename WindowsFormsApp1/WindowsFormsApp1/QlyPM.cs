@@ -13,43 +13,34 @@ namespace WindowsFormsApp1
 {
     public partial class QlyPM : Form
     {
+        int id;
         public QlyPM()
         {
             InitializeComponent();
         }
         private void loadPM()
         {
-            LVPM.Items.Clear();
+            //LVPM.Items.Clear();
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSPM();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                System.Windows.Forms.ListViewItem item = new System.Windows.Forms.ListViewItem(dt.Rows[i][0].ToString());
-                item.SubItems.Add(dt.Rows[i][2].ToString());
-                item.SubItems.Add(dt.Rows[i][3].ToString());
-                item.SubItems.Add(dt.Rows[i][1].ToString());
-                item.SubItems.Add(dt.Rows[i][4].ToString());
-                item.SubItems.Add(dt.Rows[i][5].ToString());
-                item.SubItems.Add(dt.Rows[i][6].ToString());
-                
-                LVPM.Items.Add(item);
-            }
+            GridViewPM.DataSource = dt;
+           
         }
         private void loadCBSach()
         {
-            //cbTenSach.Items.Clear();
             cbTenSach.DataSource = null;
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSSach();
+            cbTenSach.DataSource = dt;
             cbTenSach.DisplayMember = "TenSach";
             cbTenSach.ValueMember = "MaSach";
-            cbTenSach.DataSource = dt;
             
+
         }
         private void loadCBNV()
         {
             //cbHoTenNV.Items.Clear();
-            cbTenSach.DataSource = null;
+            cbHoTenNV.DataSource = null;
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSNV();
             cbHoTenNV.DisplayMember = "HoTenNhanVien";
@@ -76,58 +67,11 @@ namespace WindowsFormsApp1
             loadCBNV();
             loadCBSach();
         }
-        private void Label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void QlyPM_Load(object sender, EventArgs e)
         {
             setNullForText();
             loadPM();
-            loadCBSach();
-            loadCBNV();
-            loadCBDocGia();
         }
 
         private void BtnThoat_Click(object sender, EventArgs e)
@@ -144,27 +88,13 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void LVPM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (LVPM.SelectedItems.Count > 0)
-            {
-                System.Windows.Forms.ListViewItem item = LVPM.SelectedItems[0];
-                txtTienNo.Text = item.SubItems[4].Text;
-                txtSoTienThu.Text = item.SubItems[5].Text;
-                datePickerNM.Text = item.SubItems[3].Text;
-                cbHoTenDocGia.Text = item.SubItems[2].Text;
-                cbTenSach.Text = item.SubItems[1].Text;
-                cbHoTenNV.Text = item.SubItems[6].Text;
-            }
-        }
+       
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
-            int MaPM = 0;
-            System.Windows.Forms.ListViewItem item = LVPM.SelectedItems[0];
-            MaPM = Int16.Parse(item.Text);
+            
             PhieuMuon pm = new PhieuMuon();
-            pm.xoaPM(MaPM);
+            pm.xoaPM(id);
             setNullForText();
             loadPM();
         }
@@ -201,9 +131,7 @@ namespace WindowsFormsApp1
         {
             int MaDocGia = 0;
             int MaSach = 0;
-            int MaNV = 0;
-            int MaPM = 0;
-            System.Windows.Forms.ListViewItem item = LVPM.SelectedItems[0];
+   
             DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
             if (rowDocGia != null)
             {
@@ -214,12 +142,27 @@ namespace WindowsFormsApp1
             {
                 MaSach = (int)rowSach[0];
             }
-            MaPM = Int16.Parse(item.Text);
+           
             PhieuMuon pm = new PhieuMuon();
-            pm.suaPM(datePickerNM.Value, MaDocGia, MaPM, MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text));
+            pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text));
             setNullForText();
             loadPM();
            
+        }
+
+        private void GridViewPM_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                DataGridViewRow row = GridViewPM.Rows[e.RowIndex];
+                id = (int)row.Cells[0].Value;
+                datePickerNM.Value =(DateTime)row.Cells[1].Value;
+                cbTenSach.Text = row.Cells[2].Value.ToString();
+                cbHoTenDocGia.Text = row.Cells[3].Value.ToString();
+                txtTienNo.Text = row.Cells[4].Value.ToString();
+                txtSoTienThu.Text = row.Cells[5].Value.ToString();
+                cbHoTenNV.Text = row.Cells[6].Value.ToString();
+            }
         }
     }
 }

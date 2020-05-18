@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
     public partial class QlyDocGia : Form
     {
+        int id;
         public QlyDocGia()
         {
             InitializeComponent();
@@ -19,22 +14,8 @@ namespace WindowsFormsApp1
         private void loadDocGia()
         {
             DocGia dg = new DocGia();
-            LVDocGia.Items.Clear();
             DataTable dt = dg.LayDSDocGia();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                ListViewItem item = new ListViewItem(dt.Rows[i][0].ToString());
-                item.SubItems.Add(dt.Rows[i][1].ToString());
-                item.SubItems.Add(dt.Rows[i][2].ToString());
-                item.SubItems.Add(dt.Rows[i][3].ToString());
-                item.SubItems.Add(dt.Rows[i][4].ToString());
-                item.SubItems.Add(dt.Rows[i][5].ToString());
-                item.SubItems.Add(dt.Rows[i][6].ToString());
-                item.SubItems.Add(dt.Rows[i][7].ToString());
-                LVDocGia.Items.Add(item);
-
-            }
-            
+            GridViewDG.DataSource = dt;
         }
 
         private void QlyDocGia_Load(object sender, EventArgs e)
@@ -42,37 +23,7 @@ namespace WindowsFormsApp1
             loadDocGia();
         }
 
-        private void LVDocGia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (LVDocGia.SelectedItems.Count > 0)
-            {
-                txtNameDG.Text = LVDocGia.SelectedItems[0].SubItems[1].Text;
-                datePickerNSDG.Text = LVDocGia.SelectedItems[0].SubItems[2].Text;
-                txtAddressDG.Text = LVDocGia.SelectedItems[0].SubItems[3].Text;
-                txtEmailDG.Text = LVDocGia.SelectedItems[0].SubItems[4].Text;
-                datePickerNgayLapThe.Text = LVDocGia.SelectedItems[0].SubItems[5].Text;
-                datePickerNgayHetHan.Text = LVDocGia.SelectedItems[0].SubItems[6].Text;
-                txtTienNo.Text = LVDocGia.SelectedItems[0].SubItems[7].Text;
 
-            }
-        }
-
-        
-
-        private void Label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Label10_Click(object sender, EventArgs e)
-        {
-
-        }
         private void setNullForText()
         {
             txtAddressDG.Clear();
@@ -104,23 +55,36 @@ namespace WindowsFormsApp1
         }
         private void BtnSuaDocGia_Click(object sender, EventArgs e)
         {
-            ListViewItem item = LVDocGia.SelectedItems[0];
-            int IdDocGia = Int16.Parse(item.Text);
+
             DocGia dg = new DocGia();
-            dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text),IdDocGia);
-            
+            dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
             loadDocGia();
             setNullForText();
         }
 
         private void BtnXoaDocGia_Click(object sender, EventArgs e)
         {
-            ListViewItem item = LVDocGia.SelectedItems[0];
-            int IdDocGia = Int16.Parse(item.Text);
+
             DocGia dg = new DocGia();
-            dg.XoaDocGia(IdDocGia);
+            dg.XoaDocGia(id);
             loadDocGia();
             setNullForText();
+        }
+
+        private void GridViewDG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                DataGridViewRow row = GridViewDG.Rows[e.RowIndex];
+                id = (int)row.Cells[0].Value;
+                txtNameDG.Text = row.Cells[1].Value.ToString();
+                datePickerNSDG.Value = (DateTime)row.Cells[2].Value;
+                txtAddressDG.Text = row.Cells[3].Value.ToString();
+                txtEmailDG.Text = row.Cells[4].Value.ToString();
+                datePickerNgayLapThe.Value = (DateTime)row.Cells[5].Value;
+                datePickerNgayHetHan.Value = (DateTime)row.Cells[6].Value;
+                txtTienNo.Text = row.Cells[7].Value.ToString();
+            }
         }
     }
 }

@@ -177,7 +177,7 @@ namespace WindowsFormsApp1
 
         private void BtnQlySach_Click(object sender, EventArgs e)
         {
-            var QuanLySachForm = new QlySach();
+            var QuanLySachForm = new QuanLySach();
             QuanLySachForm.Show();
         }
 

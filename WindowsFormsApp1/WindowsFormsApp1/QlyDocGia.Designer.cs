@@ -49,20 +49,13 @@
             this.btnThemDocGia = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.LVDocGia = new System.Windows.Forms.ListView();
-            this.MaDocGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.HoTenDocGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgaySinh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DiaChi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgayLapThe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgayHetHan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TienNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.GridViewDG = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewDG)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -93,7 +86,6 @@
             this.txtTienNo.Name = "txtTienNo";
             this.txtTienNo.Size = new System.Drawing.Size(200, 20);
             this.txtTienNo.TabIndex = 16;
-            this.txtTienNo.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // label10
             // 
@@ -103,7 +95,6 @@
             this.label10.Size = new System.Drawing.Size(48, 13);
             this.label10.TabIndex = 15;
             this.label10.Text = "Tiền Nợ:";
-            this.label10.Click += new System.EventHandler(this.Label10_Click);
             // 
             // datePickerNgayHetHan
             // 
@@ -152,7 +143,6 @@
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 9;
             this.label6.Text = "Email:";
-            this.label6.Click += new System.EventHandler(this.Label6_Click);
             // 
             // datePickerNSDG
             // 
@@ -256,65 +246,13 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.LVDocGia);
+            this.groupBox3.Controls.Add(this.GridViewDG);
             this.groupBox3.Location = new System.Drawing.Point(38, 355);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(729, 215);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
-            // 
-            // LVDocGia
-            // 
-            this.LVDocGia.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.MaDocGia,
-            this.HoTenDocGia,
-            this.NgaySinh,
-            this.DiaChi,
-            this.Email,
-            this.NgayLapThe,
-            this.NgayHetHan,
-            this.TienNo});
-            this.LVDocGia.HideSelection = false;
-            this.LVDocGia.Location = new System.Drawing.Point(14, 19);
-            this.LVDocGia.Name = "LVDocGia";
-            this.LVDocGia.Size = new System.Drawing.Size(717, 181);
-            this.LVDocGia.TabIndex = 1;
-            this.LVDocGia.UseCompatibleStateImageBehavior = false;
-            this.LVDocGia.View = System.Windows.Forms.View.Details;
-            this.LVDocGia.SelectedIndexChanged += new System.EventHandler(this.LVDocGia_SelectedIndexChanged);
-            // 
-            // MaDocGia
-            // 
-            this.MaDocGia.Text = "Mã Độc Giả";
-            // 
-            // HoTenDocGia
-            // 
-            this.HoTenDocGia.Text = "Họ và Tên";
-            // 
-            // NgaySinh
-            // 
-            this.NgaySinh.Text = "Ngày Sinh";
-            // 
-            // DiaChi
-            // 
-            this.DiaChi.Text = "Dịa Chỉ";
-            // 
-            // Email
-            // 
-            this.Email.Text = "Email";
-            // 
-            // NgayLapThe
-            // 
-            this.NgayLapThe.Text = "Ngày Lập Thẻ";
-            // 
-            // NgayHetHan
-            // 
-            this.NgayHetHan.Text = "Ngày Hết Hạn";
-            // 
-            // TienNo
-            // 
-            this.TienNo.Text = "Tiền Nợ ";
             // 
             // label1
             // 
@@ -339,6 +277,15 @@
             this.label8.Text = "DANH MỤC ĐỘC GIẢ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // GridViewDG
+            // 
+            this.GridViewDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewDG.Location = new System.Drawing.Point(6, 19);
+            this.GridViewDG.Name = "GridViewDG";
+            this.GridViewDG.Size = new System.Drawing.Size(717, 190);
+            this.GridViewDG.TabIndex = 14;
+            this.GridViewDG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewDG_CellClick);
+            // 
             // QlyDocGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,6 +303,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewDG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -377,21 +325,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView LVDocGia;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ColumnHeader MaDocGia;
-        private System.Windows.Forms.ColumnHeader HoTenDocGia;
-        private System.Windows.Forms.ColumnHeader NgaySinh;
-        private System.Windows.Forms.ColumnHeader DiaChi;
-        private System.Windows.Forms.ColumnHeader Email;
-        private System.Windows.Forms.ColumnHeader NgayLapThe;
-        private System.Windows.Forms.ColumnHeader NgayHetHan;
-        private System.Windows.Forms.ColumnHeader TienNo;
         private System.Windows.Forms.TextBox txtTienNo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker datePickerNgayHetHan;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker datePickerNgayLapThe;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView GridViewDG;
     }
 }

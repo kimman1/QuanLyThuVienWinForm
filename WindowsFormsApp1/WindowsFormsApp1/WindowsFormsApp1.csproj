@@ -72,11 +72,11 @@
     <Compile Include="QlyPM.Designer.cs">
       <DependentUpon>QlyPM.cs</DependentUpon>
     </Compile>
-    <Compile Include="QlySach.cs">
+    <Compile Include="QuanLySach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QlySach.Designer.cs">
-      <DependentUpon>QlySach.cs</DependentUpon>
+    <Compile Include="QuanLySach.Designer.cs">
+      <DependentUpon>QuanLySach.cs</DependentUpon>
     </Compile>
     <Compile Include="Sach.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="QlyPM.resx">
       <DependentUpon>QlyPM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QlySach.resx">
-      <DependentUpon>QlySach.cs</DependentUpon>
+    <EmbeddedResource Include="QuanLySach.resx">
+      <DependentUpon>QuanLySach.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
