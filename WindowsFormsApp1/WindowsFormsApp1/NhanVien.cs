@@ -28,8 +28,8 @@ namespace WindowsFormsApp1
         }
         public void ThemNV(String HoTenNhanVien, DateTime NgaySinh, String DiaChi, String DienThoai, int MaBangCap)
         {
-            
-            string str = string.Format("insert into NHANVIEN([HoTenNhanVien],[NgaySinh],[DiaChi],[DienThoai],[MaBangCap]) values (N'{0}','{1}',N'{2}','{3}',{4})",HoTenNhanVien,NgaySinh,DiaChi,DienThoai,MaBangCap);
+            string ngaysinh = NgaySinh.ToString("yyyy-MM-dd");
+            string str = string.Format("insert into NHANVIEN([HoTenNhanVien],[NgaySinh],[DiaChi],[DienThoai],[MaBangCap]) values (N'{0}','{1}',N'{2}','{3}',{4})",HoTenNhanVien,ngaysinh,DiaChi,DienThoai,MaBangCap);
             con.ExecuteNonQuery(str);
         }
         public void XoaNV(int IDNhanVien)
@@ -39,7 +39,8 @@ namespace WindowsFormsApp1
         }
         public void SuaNV(int idNhanVien,String HoTenNhanVien, DateTime NgaySinh, String DiaChi, String DienThoai, int MaBangCap)
         {
-            string str = string.Format("update NHANVIEN set [HoTenNhanVien] = N'{0}', [NgaySinh] = '{1}', [DiaChi] = N'{2}', [DienThoai] = '{3}', [MaBangCap] = '{4}' where [MaNhanVien] = {5}", HoTenNhanVien,NgaySinh,DiaChi,DienThoai,MaBangCap, idNhanVien);
+            string ngaysinh = NgaySinh.ToString("yyyy-MM-dd");
+            string str = string.Format("update NHANVIEN set [HoTenNhanVien] = N'{0}', [NgaySinh] = '{1}', [DiaChi] = N'{2}', [DienThoai] = '{3}', [MaBangCap] = '{4}' where [MaNhanVien] = {5}", HoTenNhanVien,ngaysinh,DiaChi,DienThoai,MaBangCap, idNhanVien);
             con.ExecuteNonQuery(str);
         }
     }

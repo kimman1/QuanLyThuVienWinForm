@@ -34,8 +34,8 @@
             this.TacGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NamXuatBan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NhaXuatBan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NgayNhap = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TriGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NgayNhap = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtGiaTien = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.datePickerNgayNhap = new System.Windows.Forms.DateTimePicker();
@@ -101,15 +101,15 @@
             // 
             this.NhaXuatBan.Text = "Nhà Xuất Bản";
             // 
-            // NgayNhap
-            // 
-            this.NgayNhap.DisplayIndex = 5;
-            this.NgayNhap.Text = "Ngày Nhập";
-            // 
             // TriGia
             // 
             this.TriGia.DisplayIndex = 6;
             this.TriGia.Text = "Trị Giá";
+            // 
+            // NgayNhap
+            // 
+            this.NgayNhap.DisplayIndex = 5;
+            this.NgayNhap.Text = "Ngày Nhập";
             // 
             // txtGiaTien
             // 
@@ -129,6 +129,7 @@
             // 
             // datePickerNgayNhap
             // 
+            this.datePickerNgayNhap.CustomFormat = "";
             this.datePickerNgayNhap.Location = new System.Drawing.Point(488, 101);
             this.datePickerNgayNhap.Name = "datePickerNgayNhap";
             this.datePickerNgayNhap.Size = new System.Drawing.Size(200, 20);
@@ -161,6 +162,7 @@
             // 
             // datePickerNXB
             // 
+            this.datePickerNXB.CustomFormat = "";
             this.datePickerNXB.Location = new System.Drawing.Point(81, 94);
             this.datePickerNXB.Name = "datePickerNXB";
             this.datePickerNXB.Size = new System.Drawing.Size(200, 20);

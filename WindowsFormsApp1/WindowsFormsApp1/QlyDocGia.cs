@@ -73,7 +73,16 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        private void setNullForText()
+        {
+            txtAddressDG.Clear();
+            txtEmailDG.Clear();
+            txtNameDG.Clear();
+            txtTienNo.Clear();
+            datePickerNgayHetHan.Value = DateTime.Now;
+            datePickerNgayLapThe.Value = DateTime.Now;
+            datePickerNSDG.Value = DateTime.Now;
+        }
         private void BtnThoatDocGia_Click(object sender, EventArgs e)
         {
             DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn thoát !", "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -99,7 +108,9 @@ namespace WindowsFormsApp1
             int IdDocGia = Int16.Parse(item.Text);
             DocGia dg = new DocGia();
             dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text),IdDocGia);
+            
             loadDocGia();
+            setNullForText();
         }
 
         private void BtnXoaDocGia_Click(object sender, EventArgs e)
@@ -109,6 +120,7 @@ namespace WindowsFormsApp1
             DocGia dg = new DocGia();
             dg.XoaDocGia(IdDocGia);
             loadDocGia();
+            setNullForText();
         }
     }
 }

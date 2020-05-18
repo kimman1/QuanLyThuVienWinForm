@@ -21,13 +21,19 @@ namespace WindowsFormsApp1
         }
         public void ThemDocGia(String TenDocGia, DateTime NgaySinhDG, String DiaChiDG, String Email, DateTime NgayLapThe, DateTime NgayHetHan, int TienNo)
         {
-            string sql = string.Format("insert into DOCGIA([HoTenDocGia],[NgaySinh],[DiaChi],[Email],[NgayLapThe],[NgayHetHan],[TienNo]) values (N'{0}','{1}',N'{2}','{3}','{4}','{5}',{6})",TenDocGia,NgaySinhDG,DiaChiDG,Email,NgayLapThe,NgayHetHan,TienNo);
+            string ngaysinhDG = NgaySinhDG.ToString("yyyy-MM-dd");
+            string ngaylapthe = NgayLapThe.ToString("yyyy-MM-dd");
+            string ngayhethan = NgayHetHan.ToString("yyyy-MM-dd");
+            string sql = string.Format("insert into DOCGIA([HoTenDocGia],[NgaySinh],[DiaChi],[Email],[NgayLapThe],[NgayHetHan],[TienNo]) values (N'{0}','{1}',N'{2}','{3}','{4}','{5}',{6})",TenDocGia,ngaysinhDG,DiaChiDG,Email,ngaylapthe,ngayhethan,TienNo);
             con.ExecuteNonQuery(sql);
             
         }
         public void SuaDocGia(String TenDocGia, DateTime NgaySinhDG, String DiaChiDG, String Email, DateTime NgayLapThe, DateTime NgayHetHan, int TienNo, int MaDocGia)
         {
-            string sql = string.Format("update DOCGIA set [HoTenDocGia] = N'{0}', [NgaySinh] =  '{1}', [DiaChi]  = N'{2}', [Email] = '{3}', [NgayLapThe] = '{4}', [NgayHetHan] = '{5}', [TienNo] =  '{6}' where [MaDocGia] = '{7}' ",TenDocGia,NgaySinhDG,DiaChiDG,Email,NgayLapThe,NgayHetHan,TienNo, MaDocGia);
+            string ngaysinhDG = NgaySinhDG.ToString("yyyy-MM-dd");
+            string ngaylapthe = NgayLapThe.ToString("yyyy-MM-dd");
+            string ngayhethan = NgayHetHan.ToString("yyyy-MM-dd");
+            string sql = string.Format("update DOCGIA set [HoTenDocGia] = N'{0}', [NgaySinh] =  '{1}', [DiaChi]  = N'{2}', [Email] = '{3}', [NgayLapThe] = '{4}', [NgayHetHan] = '{5}', [TienNo] =  '{6}' where [MaDocGia] = '{7}' ",TenDocGia,ngaysinhDG,DiaChiDG,Email,ngaylapthe,ngayhethan,TienNo, MaDocGia);
             con.ExecuteNonQuery(sql);
 
         }

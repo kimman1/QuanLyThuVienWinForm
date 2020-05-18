@@ -49,7 +49,8 @@ namespace WindowsFormsApp1
         }
         public void themPM(DateTime NgayMuon, int MaDocGia, int MaSach, int SoTienNo, int SoTienThu, int MaNV)
         {
-            string sqlPM = string.Format("insert into PHIEUMUONSACH([NgayMuon],[MaDocGia]) values ('{0}','{1}')",NgayMuon,MaDocGia);
+            string madocgia = MaDocGia.ToString("yyyy-MM-dd");
+            string sqlPM = string.Format("insert into PHIEUMUONSACH([NgayMuon],[MaDocGia]) values ('{0}','{1}')",NgayMuon,madocgia);
             con.ExecuteNonQuery(sqlPM);
             
             string sqlCTPM = string.Format("insert into CHITIETPHIEUMUON([MaSach], [MaPhieuMuon]) values ('{0}','{1}')",MaSach,checkAvailable());
@@ -63,7 +64,8 @@ namespace WindowsFormsApp1
         }
         public void suaPM(DateTime NgayMuon, int MaDocGia, int MaPhieuMuon, int MaSach, int SoTienNo, int SoTienThu)
         {
-            string sqlPM = string.Format("update PHIEUMUONSACH set [NgayMuon] = '{0}', [MaDocGia] = '{1}' where [MaPhieuMuon] = '{2}'", NgayMuon, MaDocGia, MaPhieuMuon);
+            string ngaymuon = NgayMuon.ToString("yyyy-MM-dd");
+            string sqlPM = string.Format("update PHIEUMUONSACH set [NgayMuon] = '{0}', [MaDocGia] = '{1}' where [MaPhieuMuon] = '{2}'", ngaymuon, MaDocGia, MaPhieuMuon);
             con.ExecuteNonQuery(sqlPM);
             string sqlCTPM = string.Format("update CHITIETPHIEUMUON set [MaSach] = '{0}' where [MaPhieuMuon] = '{1}'", MaSach,MaPhieuMuon);
             con.ExecuteNonQuery(sqlCTPM);

@@ -27,7 +27,9 @@ namespace WindowsFormsApp1
         }
         public void SuaSach(string TenSach, string TacGia, DateTime NamXuatBan, string NXB, string TriGia, DateTime NgayNhap, int idSach)
         {
-            string sql = string.Format("update SACH set [TenSach] = N'{0}', [TacGia] = N'{1}', [NamXuatBan] = '{2}', [NhaXuatBan] = '{3}',[TriGia] = '{4}',[NgayNhap] = '{5}' where [MaSach] = '{6}' ",TenSach,TacGia,NamXuatBan,NXB,TriGia,NgayNhap,idSach);
+            string namxuatban = NamXuatBan.ToString("yyyy-MM-dd");
+            string ngaynhap = NgayNhap.ToString("yyyy-MM-dd");
+            string sql = string.Format("update SACH set [TenSach] = N'{0}', [TacGia] = N'{1}', [NamXuatBan] = '{2}', [NhaXuatBan] = N'{3}',[TriGia] = '{4}',[NgayNhap] =  '{5}' where [MaSach] = '{6}' ", TenSach,TacGia,namxuatban,NXB,TriGia,ngaynhap,idSach);
             con.ExecuteNonQuery(sql);
         }
         public void XoaSach(int idSach)

@@ -54,9 +54,14 @@ namespace WindowsFormsApp1
             }
             finally
             {
-                con.Close();
+                if (con != null)
+                {
+                    con.Close();
+                }
+                
             }
         }
+        
 
     }
 

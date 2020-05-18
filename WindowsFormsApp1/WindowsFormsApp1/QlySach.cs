@@ -114,53 +114,59 @@ namespace WindowsFormsApp1
 
         private void BtnXoaSach_Click(object sender, EventArgs e)
         {
-            ListViewItem item = LVSach.SelectedItems[0];
-            int idSach = Int16.Parse(item.Text);
-            DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dlrs == DialogResult.Yes)
-            {
-                setNulForText();
-                sach.XoaSach(idSach);
-                loadSach();
-            }
-            else
-            {
-                setNulForText();
-                return;
-            }
-            
+             ListViewItem item = LVSach.SelectedItems[0];
+             int idSach = Int16.Parse(item.Text);
+             DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+             if (dlrs == DialogResult.Yes)
+             {
+                 setNulForText();
+                 sach.XoaSach(idSach);
+                 loadSach();
+             }
+             else
+             {
+                 setNulForText();
+                // return;
+             }
+           
         }
 
         private void BtnSuaSach_Click(object sender, EventArgs e)
         {
-            if (txtTenSach.Text.Equals(""))
-            {
-                ErrorMessage("Điền tên sách!!!", "Error");
+             if (txtTenSach.Text.Equals(""))
+             {
+                 ErrorMessage("Điền tên sách!!!", "Error");
+             }
+             else if (txtNXB.Text.Equals(""))
+             {
+                 ErrorMessage("Điền tên NXB!!!", "Error");
+             }
+             else if (txtGiaTien.Text.Equals(""))
+             {
+                 ErrorMessage("Điền giá tiền!!!", "Error");
+             }
+             else if (txtTacGia.Text.Equals(""))
+             {
+                 ErrorMessage("Điền tên tác giả!!!", "Error");
+             }
+             else if (datePickerNXB.Value.Year.Equals(DateTime.Now.Year) && datePickerNXB.Value.Month.Equals(DateTime.Now.Month) && datePickerNXB.Value.Day.Equals(DateTime.Now.Day))
+             {
+                 ErrorMessage("Xem lại Ngày Xuất Bản", "Error");
+             }
+             else
+             {
+             
+            ListViewItem item = LVSach.SelectedItems[0];
+            int idSach = short.Parse(item.Text);
+            sach.SuaSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value, idSach);
+            setNulForText();
+            loadSach();
+            
             }
-            else if (txtNXB.Text.Equals(""))
-            {
-                ErrorMessage("Điền tên NXB!!!", "Error");
-            }
-            else if (txtGiaTien.Text.Equals(""))
-            {
-                ErrorMessage("Điền giá tiền!!!", "Error");
-            }
-            else if (txtTacGia.Text.Equals(""))
-            {
-                ErrorMessage("Điền tên tác giả!!!", "Error");
-            }
-            else if (datePickerNXB.Value.Year.Equals(DateTime.Now.Year) && datePickerNXB.Value.Month.Equals(DateTime.Now.Month) && datePickerNXB.Value.Day.Equals(DateTime.Now.Day))
-            {
-                ErrorMessage("Xem lại Ngày Xuất Bản", "Error");
-            }
-            else
-            {
-                ListViewItem item = LVSach.SelectedItems[0];
-                int idSach = short.Parse(item.Text);
-                sach.SuaSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value, idSach);
-                setNulForText();
-                loadSach();
-            }
+
+             
+
+           
             
         }
         public void ErrorMessage(string message, string title)

@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
         }
         private void loadCBSach()
         {
-           // cbTenSach.Items.Clear();
+            //cbTenSach.Items.Clear();
             cbTenSach.DataSource = null;
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSSach();
