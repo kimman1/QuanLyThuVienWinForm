@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -149,6 +150,14 @@ namespace WindowsFormsApp1
             {
                 return;
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            sach = new Sach();
+            DataTable dt = sach.TimKiemSach(txtSearch.Text);
+            GridViewSach.DataSource = null;
+            GridViewSach.DataSource = dt;
         }
     }
 }

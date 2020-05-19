@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace WindowsFormsApp1
 {
@@ -37,5 +38,13 @@ namespace WindowsFormsApp1
             string sql = ("delete from SACH where MaSach =") + idSach;
             con.ExecuteNonQuery(sql);
         }
+
+        public DataTable TimKiemSach(string seachString)
+        {
+            string sql = "select * from SACH where TenSach like '%" + seachString + "%'";
+            DataTable dt =  con.Execute(sql);
+            return dt;
+        }
+        
     }
 }

@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
 {
     public partial class QlyPM : Form
     {
-        int id;
+        int id =-1 ;
         public QlyPM()
         {
             InitializeComponent();
@@ -49,11 +49,10 @@ namespace WindowsFormsApp1
         }
         private void loadCBDocGia()
         {
-           // cbHoTenDocGia.Items.Clear();
+       
             cbHoTenDocGia.DataSource = null;
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSDG();
-         
             cbHoTenDocGia.DisplayMember = "HoTenDocGia";
             cbHoTenDocGia.ValueMember = "MaDocGia";
             cbHoTenDocGia.DataSource = dt;
@@ -92,11 +91,18 @@ namespace WindowsFormsApp1
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
+            if (id != -1)
+            {
+                PhieuMuon pm = new PhieuMuon();
+                pm.xoaPM(id);
+                setNullForText();
+                loadPM();
+            }
+            else 
+            {
+                ErrorMessage("Vui lòng chọn Phiếu Mượn để xóa","Missing ID");
+            }
             
-            PhieuMuon pm = new PhieuMuon();
-            pm.xoaPM(id);
-            setNullForText();
-            loadPM();
         }
 
         private void BtnThem_Click(object sender, EventArgs e)
@@ -121,7 +127,8 @@ namespace WindowsFormsApp1
             {
                 MaNV = (int)rowNV[0];
             }
-            pm.themPM(datePickerNM.Value, MaDocGia ,MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text),MaNV);
+            
+            pm.themPM(DateTime.Now, MaDocGia ,MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text),MaNV);
               setNullForText();
               loadPM();
           
@@ -152,17 +159,82 @@ namespace WindowsFormsApp1
 
         private void GridViewPM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = GridViewPM.Rows[e.RowIndex];
-                id = (int)row.Cells[0].Value;
-                datePickerNM.Value =(DateTime)row.Cells[1].Value;
-                cbTenSach.Text = row.Cells[2].Value.ToString();
-                cbHoTenDocGia.Text = row.Cells[3].Value.ToString();
-                txtTienNo.Text = row.Cells[4].Value.ToString();
-                txtSoTienThu.Text = row.Cells[5].Value.ToString();
-                cbHoTenNV.Text = row.Cells[6].Value.ToString();
+                id = (int)row.Cells[1].Value;
+                datePickerNM.Value =(DateTime)row.Cells[2].Value;
+                cbTenSach.Text = row.Cells[3].Value.ToString();
+                cbHoTenDocGia.Text = row.Cells[4].Value.ToString();
+                txtTienNo.Text = row.Cells[5].Value.ToString();
+                txtSoTienThu.Text = row.Cells[6].Value.ToString();
+                cbHoTenNV.Text = row.Cells[7].Value.ToString();
+                if (Convert.ToString(row.Cells[8].Value) != string.Empty)
+                {
+                    datePickerNgayTra.Value = (DateTime)row.Cells[8].Value;
+                }
+                else
+                {
+                    
+                    ErrorMessage("Không tìm thấy ngày trả!!!", "DateCheckError");
+                }
+
+                
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void ErrorMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnXoaList_Click(object sender, EventArgs e)
+        {
+            if (id != -1)
+            {
+                PhieuMuon pm = new PhieuMuon();
+                List<int> listID = new List<int>();
+                foreach (DataGridViewRow check in GridViewPM.Rows)
+                {
+                    if ((bool)check.Cells["status"].FormattedValue)
+                    {
+                        listID.Add((int)check.Cells["MaPhieuMuon"].Value);
+                    }
+                }
+                foreach (int a in listID)
+                {
+                    pm.xoaPM(a);
+                }
+                loadPM();
+            }
+            else 
+            {
+                ErrorMessage("Vui lòng chọn ít nhất một checkbox", "Missing ID");
+            }
+            
+        }
+
+        private void btnTraSach_Click(object sender, EventArgs e)
+        {
+            PhieuMuon pm = new PhieuMuon();
+            if (id != -1)
+            {
+                pm.TraSach(id, datePickerNgayTra.Value);
+            }
+            else
+            {
+                ErrorMessage("Vui lòng click chọn Phiếu Mượn để xóa", "Missing ID");
+            }
+            loadPM();
         }
     }
 }

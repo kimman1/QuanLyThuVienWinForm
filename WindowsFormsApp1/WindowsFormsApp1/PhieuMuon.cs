@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         }
         public DataTable layDSPM()
         {
-            String sql = "select PHIEUMUONSACH.MaPhieuMuon, NgayMuon, TenSach, DOCGIA.HoTenDocGia, PHIEUTHUTIEN.SoTienNo, PHIEUTHUTIEN.SoTienThu, NHANVIEN.HoTenNhanVien from PHIEUMUONSACH, CHITIETPHIEUMUON, SACH, DOCGIA, PHIEUTHUTIEN,NHANVIEN where PHIEUMUONSACH.MaPhieuMuon = CHITIETPHIEUMUON.MaPhieuMuon and CHITIETPHIEUMUON.MaSach = SACH.MaSach  and PHIEUMUONSACH.MaDocGia = DOCGIA.MaDocGia and PHIEUTHUTIEN.MaPhieuMuon = PHIEUMUONSACH.MaPhieuMuon and NHANVIEN.MaNhanVien = PHIEUTHUTIEN.MaNhanVien Order by PHIEUMUONSACH.MaPhieuMuon asc";
+            String sql = "select PHIEUMUONSACH.MaPhieuMuon, NgayMuon, TenSach, DOCGIA.HoTenDocGia, PHIEUTHUTIEN.SoTienNo, PHIEUTHUTIEN.SoTienThu, NHANVIEN.HoTenNhanVien, NgayTra from PHIEUMUONSACH, CHITIETPHIEUMUON, SACH, DOCGIA, PHIEUTHUTIEN,NHANVIEN where PHIEUMUONSACH.MaPhieuMuon = CHITIETPHIEUMUON.MaPhieuMuon and CHITIETPHIEUMUON.MaSach = SACH.MaSach  and PHIEUMUONSACH.MaDocGia = DOCGIA.MaDocGia and PHIEUTHUTIEN.MaPhieuMuon = PHIEUMUONSACH.MaPhieuMuon and NHANVIEN.MaNhanVien = PHIEUTHUTIEN.MaNhanVien Order by PHIEUMUONSACH.MaPhieuMuon asc";
             DataTable dt = con.Execute(sql);
             return dt;
         }
@@ -49,8 +49,8 @@ namespace WindowsFormsApp1
         }
         public void themPM(DateTime NgayMuon, int MaDocGia, int MaSach, int SoTienNo, int SoTienThu, int MaNV)
         {
-            string madocgia = MaDocGia.ToString("yyyy-MM-dd");
-            string sqlPM = string.Format("insert into PHIEUMUONSACH([NgayMuon],[MaDocGia]) values ('{0}','{1}')",NgayMuon,madocgia);
+            string ngayMuon = NgayMuon.ToString("yyyy-MM-dd");
+            string sqlPM = string.Format("insert into PHIEUMUONSACH([NgayMuon],[MaDocGia]) values ('{0}','{1}')",ngayMuon,MaDocGia);
             con.ExecuteNonQuery(sqlPM);
             
             string sqlCTPM = string.Format("insert into CHITIETPHIEUMUON([MaSach], [MaPhieuMuon]) values ('{0}','{1}')",MaSach,checkAvailable());
@@ -80,6 +80,12 @@ namespace WindowsFormsApp1
             con.ExecuteNonQuery(sqlCTPM);
             string sqlPM = string.Format("delete from PHIEUMUONSACH where [MaPhieuMuon] = '{0}'", MaPhieuMuon);
             con.ExecuteNonQuery(sqlPM);
+        }
+        public void TraSach(int idPM, DateTime NgayTra)
+        {
+            string ngayTra = NgayTra.ToString("yyyy-MM-dd");
+            string sql = string.Format("update CHITIETPHIEUMUON set [NgayTra] = '{0}' where [MaPhieuMuon] = '{1}'",ngayTra,idPM) ;
+            con.ExecuteNonQuery(sql);
         }
     }
 }

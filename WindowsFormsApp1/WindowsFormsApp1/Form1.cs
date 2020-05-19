@@ -13,30 +13,22 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         NhanVien nv = new NhanVien();
+        int id;
+        int idBangCap;
         public Form1()
         {
             InitializeComponent();
         }
         public void loadNhanVien()
         {
-            listView1.Items.Clear();
+           
             DataTable dt = nv.LayDSNhanVien();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                ListViewItem item = new ListViewItem(dt.Rows[i][0].ToString());
-                item.SubItems.Add(dt.Rows[i][1].ToString());
-                item.SubItems.Add(dt.Rows[i][2].ToString());
-                item.SubItems.Add(dt.Rows[i][3].ToString());
-                item.SubItems.Add(dt.Rows[i][4].ToString());
-                item.SubItems.Add(dt.Rows[i][5].ToString());
-                listView1.Items.Add(item);
-
-            }
-            listView1.Columns.Remove(MaBangCap);
+            GridViewIndex.DataSource = dt;
         }
         public void loadBangCap()
         {
             DataTable dt = nv.LayDSBangCap();
+            cbBangCap.DataSource = null;
             cbBangCap.DataSource = dt;
             cbBangCap.DisplayMember = "TenBangCap";
             cbBangCap.ValueMember = "MaBangCap";
@@ -47,23 +39,7 @@ namespace WindowsFormsApp1
             loadBangCap();
         }
 
-        private void GroupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                txtName.Text = listView1.SelectedItems[0].SubItems[1].Text;
-               datePickerNgaySinh.Text = listView1.SelectedItems[0].SubItems[2].Text;
-                txtAddress.Text = listView1.SelectedItems[0].SubItems[3].Text;
-                txtPhone.Text = listView1.SelectedItems[0].SubItems[4].Text;
-                cbBangCap.SelectedValue = listView1.SelectedItems[0].SubItems[5].Text;
-            }
-        }
-
+       
         private void BtnThoat_Click(object sender, EventArgs e)
         {
             DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn thoát !", "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -79,7 +55,7 @@ namespace WindowsFormsApp1
         public void setNullforText()
         {
             txtAddress.Clear();
-            txtLastName.Clear();
+            
             txtName.Clear();
             txtPhone.Clear();
             datePickerNgaySinh.Value = DateTime.Now;
@@ -113,12 +89,12 @@ namespace WindowsFormsApp1
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.SelectedItems[0];
-            int IdNhanVien = Int16.Parse(item.Text);
+            
+            
          DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dlrs == DialogResult.Yes)
             {
-                nv.XoaNV(IdNhanVien);
+                nv.XoaNV(id);
                 setNullforText();
                 loadNhanVien();
             }
@@ -131,9 +107,9 @@ namespace WindowsFormsApp1
 
         private void BtnSua_Click(object sender, EventArgs e)
         {
-            ListViewItem item = listView1.SelectedItems[0];
-            int IdNhanVien = Int16.Parse(item.Text);
-            int MaBangCap = Int16.Parse(cbBangCap.SelectedValue.ToString());
+          
+            int IdNhanVien = id;
+            int MaBangCap = idBangCap;
             if (txtName.Text.Equals(""))
             {
                 MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -165,16 +141,6 @@ namespace WindowsFormsApp1
             QuanlyDG.Show();
         }
 
-        private void TxtLastName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnQlySach_Click(object sender, EventArgs e)
         {
             var QuanLySachForm = new QuanLySach();
@@ -186,5 +152,23 @@ namespace WindowsFormsApp1
             var QuanLyPM = new QlyPM();
             QuanLyPM.Show();
         }
+
+        private void GridViewIndex_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = GridViewIndex.Rows[e.RowIndex];
+                id = (int)row.Cells[0].Value;
+                txtName.Text = row.Cells[1].Value.ToString();
+                datePickerNgaySinh.Value = (DateTime)row.Cells[2].Value;
+                txtAddress.Text = row.Cells[3].Value.ToString();
+                txtPhone.Text = row.Cells[4].Value.ToString();
+                cbBangCap.SelectedValue = row.Cells[5].Value;
+                idBangCap = (int) row.Cells[5].Value;
+            }
+        }
+
+       
+       
     }
 }
