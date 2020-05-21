@@ -109,19 +109,19 @@ namespace WindowsFormsApp1
 
         private void BtnSuaSach_Click(object sender, EventArgs e)
         {
-            if (txtTenSach.Text.Equals(""))
+            if (txtTenSach.Text.Trim().Equals(""))
             {
                 ErrorMessage("Điền tên sách!!!", "Error");
             }
-            else if (txtNXB.Text.Equals(""))
+            else if (txtNXB.Text.Trim().Equals(""))
             {
                 ErrorMessage("Điền tên NXB!!!", "Error");
             }
-            else if (txtGiaTien.Text.Equals(""))
+            else if (txtGiaTien.Text.Trim().Equals(""))
             {
                 ErrorMessage("Điền giá tiền!!!", "Error");
             }
-            else if (txtTacGia.Text.Equals(""))
+            else if (txtTacGia.Text.Trim().Equals(""))
             {
                 ErrorMessage("Điền tên tác giả!!!", "Error");
             }
@@ -159,5 +159,7 @@ namespace WindowsFormsApp1
             GridViewSach.DataSource = null;
             GridViewSach.DataSource = dt;
         }
+
+       
     }
 }

@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -34,18 +31,23 @@ namespace WindowsFormsApp1
             cbTenSach.DataSource = dt;
             cbTenSach.DisplayMember = "TenSach";
             cbTenSach.ValueMember = "MaSach";
-            
+            cbTenSach.SelectedIndex = -1;
+            cbTenSach.Text = "--Select--";
 
         }
         private void loadCBNV()
         {
             //cbHoTenNV.Items.Clear();
             cbHoTenNV.DataSource = null;
+          
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSNV();
+           
             cbHoTenNV.DisplayMember = "HoTenNhanVien";
             cbHoTenNV.ValueMember = "MaNhanVien";
             cbHoTenNV.DataSource = dt;
+            cbHoTenNV.SelectedIndex = -1;
+            cbHoTenNV.Text = "--Select--";
         }
         private void loadCBDocGia()
         {
@@ -56,6 +58,8 @@ namespace WindowsFormsApp1
             cbHoTenDocGia.DisplayMember = "HoTenDocGia";
             cbHoTenDocGia.ValueMember = "MaDocGia";
             cbHoTenDocGia.DataSource = dt;
+            cbHoTenDocGia.SelectedIndex = -1;
+            cbHoTenDocGia.Text = "--Select--";
         }
         private void setNullForText()
         {
@@ -107,10 +111,10 @@ namespace WindowsFormsApp1
 
         private void BtnThem_Click(object sender, EventArgs e)
         {
-            int MaDocGia = 0 ;
-            int MaSach = 0;
-            int MaNV = 0;
-            PhieuMuon pm = new PhieuMuon();
+            int MaDocGia = -1 ;
+            int MaSach = -1;
+            int MaNV = -1;
+            
             
             DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
             if (rowDocGia != null)
@@ -127,11 +131,31 @@ namespace WindowsFormsApp1
             {
                 MaNV = (int)rowNV[0];
             }
-            
-            pm.themPM(DateTime.Now, MaDocGia ,MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text),MaNV);
-              setNullForText();
-              loadPM();
-          
+            if (MaDocGia.Equals(-1))
+            {
+                ErrorMessage("Vui lòng chọn Độc Giả", "Missing Customer ID");
+            }
+            else if (MaSach.Equals(-1))
+            {
+                ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");
+            }
+            else if (MaNV.Equals(-1))
+            {
+                ErrorMessage("Vui lòng chọn Nhân Viên", "Missing EmployeeID");
+            }
+            else 
+            {
+                if (txtTienNo.Text.Trim().Equals("") && txtSoTienThu.Text.Trim().Equals(""))
+                {
+                    txtSoTienThu.Text = "0";
+                    txtTienNo.Text = "0";
+                }
+                PhieuMuon pm = new PhieuMuon();
+                pm.themPM(DateTime.Now, MaDocGia, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text), MaNV);
+                setNullForText();
+                loadPM();
+
+            }
         }
 
         private void BtnSua_Click(object sender, EventArgs e)

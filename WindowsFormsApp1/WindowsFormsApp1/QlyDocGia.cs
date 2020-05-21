@@ -49,31 +49,60 @@ namespace WindowsFormsApp1
 
         private void BtnThemDocGia_Click(object sender, EventArgs e)
         {
-            DocGia dg = new DocGia();
-            dg.ThemDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text));
-            loadDocGia();
+            if (checkNullForm() == false)
+            {
+                
+                if (txtTienNo.Text.Trim().Equals(""))
+                {
+                    txtTienNo.Text = "0";
+                }
+                if (checkDateTime() == false)
+                {
+                    DocGia dg = new DocGia();
+                    dg.ThemDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text));
+                    loadDocGia();
+                }
+                
+            }
+            
+            
         }
         private void BtnSuaDocGia_Click(object sender, EventArgs e)
         {
+            
+            if (checkNullForm() == false)
+            {
+                if (txtTienNo.Text.Equals(""))
+                {
+                    txtTienNo.Text = "0";
+                }
+                if (checkDateTime() == false)
+                {
+                    DocGia dg = new DocGia();
+                    dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
+                    loadDocGia();
+                    setNullForText();
 
-            DocGia dg = new DocGia();
-            dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
-            loadDocGia();
-            setNullForText();
+                }
+            }
         }
 
         private void BtnXoaDocGia_Click(object sender, EventArgs e)
         {
-
-            DocGia dg = new DocGia();
-            dg.XoaDocGia(id);
-            loadDocGia();
-            setNullForText();
+            DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dlrs == DialogResult.Yes)
+            {
+                DocGia dg = new DocGia();
+                dg.XoaDocGia(id);
+                loadDocGia();
+                setNullForText();
+            }
+            
         }
 
         private void GridViewDG_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = GridViewDG.Rows[e.RowIndex];
                 id = (int)row.Cells[0].Value;
@@ -85,6 +114,42 @@ namespace WindowsFormsApp1
                 datePickerNgayHetHan.Value = (DateTime)row.Cells[6].Value;
                 txtTienNo.Text = row.Cells[7].Value.ToString();
             }
+        }
+        public void ErrorMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private bool checkNullForm()
+        {
+            bool status = false;
+            if (txtNameDG.Text.Trim().Equals(""))
+            {
+                ErrorMessage("Vui lòng điền tên độc giả !!!", "Missing Customer Name");
+                status = true;
+            }
+            else if (txtEmailDG.Text.Trim().Equals(""))
+            {
+                ErrorMessage("Vui lòng điền Email!!!", "Missing Customer Email");
+                status = true;
+            }
+            else if (txtAddressDG.Text.Trim().Equals(""))
+            {
+                ErrorMessage("Vui lòng đièn địa chỉ !!!", "Missing Customer address");
+                status = true;
+            }
+            
+            return status;
+        }
+        private bool checkDateTime()
+        {
+            bool status = false;
+            DateTime now = DateTime.Now;
+            if (datePickerNSDG.Value.Day.Equals(now.Day) && datePickerNSDG.Value.Month.Equals(now.Month) && datePickerNSDG.Value.Year.Equals(now.Year))
+            {
+                ErrorMessage("Vui lòng kiểm tra lại ngày sinh!!!","Wrong birthday!");
+                status = true;
+            }
+            return status;
         }
     }
 }
