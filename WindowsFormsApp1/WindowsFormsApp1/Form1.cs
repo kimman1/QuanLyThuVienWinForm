@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         NhanVien nv = new NhanVien();
-        int id;
+        int id = -1;
         int idBangCap;
         public Form1()
         {
@@ -89,20 +89,28 @@ namespace WindowsFormsApp1
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
-            
-            
-         DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dlrs == DialogResult.Yes)
+            if (id == -1)
             {
-                nv.XoaNV(id);
-                setNullforText();
-                loadNhanVien();
+                ErrorMessage("Vui lòng chọn nhân viên để xóa!!!", "DataError");
             }
             else
             {
-                setNullforText();
-                return;
+                DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dlrs == DialogResult.Yes)
+                {
+                    nv.XoaNV(id);
+                    setNullforText();
+                    loadNhanVien();
+                    id = -1;
+                }
+                else
+                {
+                    setNullforText();
+                    id = -1;
+                    return;
+                }
             }
+         
         }
 
         private void BtnSua_Click(object sender, EventArgs e)
@@ -110,29 +118,38 @@ namespace WindowsFormsApp1
           
             int IdNhanVien = id;
             int MaBangCap = idBangCap;
-            if (txtName.Text.Equals(""))
+            if (IdNhanVien == -1)
             {
-                MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMessage("Vui lòng chọn nhân viên để sửa !!!!", "Data Error");
             }
-            else if (txtAddress.Text.Equals(""))
+            else 
             {
-                MessageBox.Show("Nhập Địa Chỉ", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (txtName.Text.Equals(""))
+                {
+                    MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtAddress.Text.Equals(""))
+                {
+                    MessageBox.Show("Nhập Địa Chỉ", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtPhone.Text.Equals(""))
+                {
+                    MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if ((DateTime.Now.Year - datePickerNgaySinh.Value.Year) < 18)
+                {
+                    MessageBox.Show("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    nv.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
+                    setNullforText();
+                    loadNhanVien();
+                    id = -1;
+                }
+
             }
-            else if (txtPhone.Text.Equals(""))
-            {
-                MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if ((DateTime.Now.Year - datePickerNgaySinh.Value.Year) < 18)
-            {
-                MessageBox.Show("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                nv.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
-                setNullforText();
-                loadNhanVien();
-            }
-           
+
         }
 
         private void BtnQLyDocGia_Click(object sender, EventArgs e)
@@ -167,8 +184,11 @@ namespace WindowsFormsApp1
                 idBangCap = (int) row.Cells[5].Value;
             }
         }
+        public void ErrorMessage(string message, string title)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
-       
-       
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -91,52 +92,73 @@ namespace WindowsFormsApp1
 
         private void BtnXoaSach_Click(object sender, EventArgs e)
         {
-            DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dlrs == DialogResult.Yes)
+            if (id == -1)
             {
-                sach = new Sach();
-                sach.XoaSach(id);
-                setNulForText();
-                loadSach();
+                ErrorMessage("Vui lòng chọn sách!!!!","Data Error");
             }
-            else
+            else 
             {
-                setNulForText();
-                
+                DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dlrs == DialogResult.Yes)
+                {
+                   
+                        sach = new Sach();
+                        sach.XoaSach(id);
+                        setNulForText();
+                        loadSach();
+                        id = -1;
+                   
+                   
+                }
+                else
+                {
+                    setNulForText();
+                    id = -1;
+                }
+
             }
-            
+
         }
 
         private void BtnSuaSach_Click(object sender, EventArgs e)
         {
-            if (txtTenSach.Text.Trim().Equals(""))
+            if (id == -1)
             {
-                ErrorMessage("Điền tên sách!!!", "Error");
+                ErrorMessage("Vui lòng chọn sách !!!","Data Error");
             }
-            else if (txtNXB.Text.Trim().Equals(""))
+            else 
             {
-                ErrorMessage("Điền tên NXB!!!", "Error");
+                if (txtTenSach.Text.Trim().Equals(""))
+                {
+                    ErrorMessage("Điền tên sách!!!", "Error");
+                }
+                else if (txtNXB.Text.Trim().Equals(""))
+                {
+                    ErrorMessage("Điền tên NXB!!!", "Error");
+                }
+                else if (txtGiaTien.Text.Trim().Equals(""))
+                {
+                    ErrorMessage("Điền giá tiền!!!", "Error");
+                }
+                else if (txtTacGia.Text.Trim().Equals(""))
+                {
+                    ErrorMessage("Điền tên tác giả!!!", "Error");
+                }
+                else if (datePickerNXB.Value.Year.Equals(DateTime.Now.Year) && datePickerNXB.Value.Month.Equals(DateTime.Now.Month) && datePickerNXB.Value.Day.Equals(DateTime.Now.Day))
+                {
+                    ErrorMessage("Xem lại Ngày Xuất Bản", "Error");
+                }
+                else
+                {
+                    sach = new Sach();
+                    sach.SuaSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value, id);
+                    setNulForText();
+                    loadSach();
+                    id = -1;
+                }
+
             }
-            else if (txtGiaTien.Text.Trim().Equals(""))
-            {
-                ErrorMessage("Điền giá tiền!!!", "Error");
-            }
-            else if (txtTacGia.Text.Trim().Equals(""))
-            {
-                ErrorMessage("Điền tên tác giả!!!", "Error");
-            }
-            else if (datePickerNXB.Value.Year.Equals(DateTime.Now.Year) && datePickerNXB.Value.Month.Equals(DateTime.Now.Month) && datePickerNXB.Value.Day.Equals(DateTime.Now.Day))
-            {
-                ErrorMessage("Xem lại Ngày Xuất Bản", "Error");
-            }
-            else
-            {
-                sach = new Sach();
-                sach.SuaSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value, id);
-                setNulForText();
-                loadSach();
-            }
-            
+
         }
 
         private void BtnThoatSach_Click(object sender, EventArgs e)

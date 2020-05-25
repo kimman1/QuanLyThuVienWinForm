@@ -39,10 +39,8 @@ namespace WindowsFormsApp1
         {
             //cbHoTenNV.Items.Clear();
             cbHoTenNV.DataSource = null;
-          
             PhieuMuon pm = new PhieuMuon();
             DataTable dt = pm.layDSNV();
-           
             cbHoTenNV.DisplayMember = "HoTenNhanVien";
             cbHoTenNV.ValueMember = "MaNhanVien";
             cbHoTenNV.DataSource = dt;
@@ -101,6 +99,7 @@ namespace WindowsFormsApp1
                 pm.xoaPM(id);
                 setNullForText();
                 loadPM();
+                id = -1;
             }
             else 
             {
@@ -162,23 +161,28 @@ namespace WindowsFormsApp1
         {
             int MaDocGia = 0;
             int MaSach = 0;
-   
-            DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
-            if (rowDocGia != null)
+            if (id == -1)
             {
-                MaDocGia = (int)rowDocGia[0];
+                ErrorMessage("Vui lòng chọn PM để sửa!!!","Data Error");
             }
-            DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
-            if (rowSach != null)
+            else 
             {
-                MaSach = (int)rowSach[0];
+                DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
+                if (rowDocGia != null)
+                {
+                    MaDocGia = (int)rowDocGia[0];
+                }
+                DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
+                if (rowSach != null)
+                {
+                    MaSach = (int)rowSach[0];
+                }
+                PhieuMuon pm = new PhieuMuon();
+                pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text));
+                setNullForText();
+                loadPM();
+                id = -1;
             }
-           
-            PhieuMuon pm = new PhieuMuon();
-            pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach,Int32.Parse(txtTienNo.Text),Int32.Parse(txtSoTienThu.Text));
-            setNullForText();
-            loadPM();
-           
         }
 
         private void GridViewPM_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -238,6 +242,7 @@ namespace WindowsFormsApp1
                 {
                     pm.xoaPM(a);
                 }
+                id = -1;
                 loadPM();
             }
             else 
@@ -253,6 +258,7 @@ namespace WindowsFormsApp1
             if (id != -1)
             {
                 pm.TraSach(id, datePickerNgayTra.Value);
+                id = -1;
             }
             else
             {
