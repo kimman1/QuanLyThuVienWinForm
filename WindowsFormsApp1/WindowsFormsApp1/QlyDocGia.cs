@@ -6,7 +6,7 @@ namespace WindowsFormsApp1
 {
     public partial class QlyDocGia : Form
     {
-        int id;
+        int id = -1;
         public QlyDocGia()
         {
             InitializeComponent();
@@ -69,35 +69,59 @@ namespace WindowsFormsApp1
         }
         private void BtnSuaDocGia_Click(object sender, EventArgs e)
         {
-            
-            if (checkNullForm() == false)
-            {
-                if (txtTienNo.Text.Equals(""))
-                {
-                    txtTienNo.Text = "0";
-                }
-                if (checkDateTime() == false)
-                {
-                    DocGia dg = new DocGia();
-                    dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
-                    loadDocGia();
-                    setNullForText();
 
+            if (id == -1)
+            {
+                ErrorMessage("Vui lòng chọn Độc Giả!!!","Data Check Error");
+            }
+            else
+            {
+                if (checkNullForm() == false)
+                {
+                    if (txtTienNo.Text.Equals(""))
+                    {
+                        txtTienNo.Text = "0";
+                    }
+                    if (checkDateTime() == false)
+                    {
+                        DocGia dg = new DocGia();
+                        dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
+                        loadDocGia();
+                        setNullForText();
+                        id = -1;
+
+                    }
                 }
             }
+            
         }
 
         private void BtnXoaDocGia_Click(object sender, EventArgs e)
         {
-            DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dlrs == DialogResult.Yes)
+            if (id == -1)
             {
-                DocGia dg = new DocGia();
-                dg.XoaDocGia(id);
-                loadDocGia();
-                setNullForText();
+                ErrorMessage("Vui lòng chọn độc giả!!!","Data Check Error");
             }
-            
+            else 
+            {
+                DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dlrs == DialogResult.Yes)
+                {
+                    DocGia dg = new DocGia();
+                    dg.XoaDocGia(id);
+                    loadDocGia();
+                    setNullForText();
+                    id = -1;
+                }
+                else
+                {
+                    setNullForText();
+                    id = -1;
+                }
+
+            }
+
+
         }
 
         private void GridViewDG_CellClick(object sender, DataGridViewCellEventArgs e)

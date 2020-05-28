@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     public partial class QuanLySach : Form
     {
         Sach sach;
-        int id;
+        int id = -1;
         public QuanLySach()
         {
             InitializeComponent();
