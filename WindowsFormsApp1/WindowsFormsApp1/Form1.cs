@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.BUS;
 
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        NhanVien nv = new NhanVien();
+        //NhanVien nv = new NhanVien();
+        BUS_NV busNV = new BUS_NV();
         int id = -1;
         int idBangCap;
         public Form1()
@@ -21,17 +23,19 @@ namespace WindowsFormsApp1
         }
         public void loadNhanVien()
         {
-           
-            DataTable dt = nv.LayDSNhanVien();
-            GridViewIndex.DataSource = dt;
+
+            //DataTable dt = nv.LayDSNhanVien();
+            //GridViewIndex.DataSource = nvDao.ListNV();
+            busNV.HienThiDSNV(GridViewIndex);
         }
         public void loadBangCap()
         {
-            DataTable dt = nv.LayDSBangCap();
+            /*DataTable dt = nv.LayDSBangCap();
             cbBangCap.DataSource = null;
             cbBangCap.DataSource = dt;
             cbBangCap.DisplayMember = "TenBangCap";
-            cbBangCap.ValueMember = "MaBangCap";
+            cbBangCap.ValueMember = "MaBangCap";*/
+            busNV.HienThiDSBC(cbBangCap);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -80,13 +84,13 @@ namespace WindowsFormsApp1
             }
             else
             {
-                nv.ThemNV(txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, (int)cbBangCap.SelectedValue);
+                //nv.ThemNV(txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, (int)cbBangCap.SelectedValue);
+                busNV.ThemNV(txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, (int)cbBangCap.SelectedValue);
                 setNullforText();
                 loadNhanVien();
             }
            
         }
-
         private void BtnXoa_Click(object sender, EventArgs e)
         {
             if (id == -1)
@@ -98,7 +102,7 @@ namespace WindowsFormsApp1
                 DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dlrs == DialogResult.Yes)
                 {
-                    nv.XoaNV(id);
+                    busNV.XoaNV(id);
                     setNullforText();
                     loadNhanVien();
                     id = -1;
@@ -112,12 +116,11 @@ namespace WindowsFormsApp1
             }
          
         }
-
         private void BtnSua_Click(object sender, EventArgs e)
         {
           
             int IdNhanVien = id;
-            int MaBangCap = idBangCap;
+            int MaBangCap = (int) cbBangCap.SelectedValue;
             if (IdNhanVien == -1)
             {
                 ErrorMessage("Vui lòng chọn nhân viên để sửa !!!!", "Data Error");
@@ -142,7 +145,8 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    nv.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
+                    //nv.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
+                    busNV.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
                     setNullforText();
                     loadNhanVien();
                     id = -1;
@@ -179,7 +183,7 @@ namespace WindowsFormsApp1
                 txtName.Text = row.Cells[1].Value.ToString();
                 datePickerNgaySinh.Value = (DateTime)row.Cells[2].Value;
                 txtAddress.Text = row.Cells[3].Value.ToString();
-                txtPhone.Text = row.Cells[4].Value.ToString();
+                txtPhone.Text = row.Cells[6].Value.ToString();
                 cbBangCap.SelectedValue = row.Cells[5].Value;
                 idBangCap = (int) row.Cells[5].Value;
             }

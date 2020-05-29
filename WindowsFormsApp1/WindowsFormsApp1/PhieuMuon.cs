@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
             DataTable dt = con.Execute(sql);
             return dt;
         }
+       
         public DataTable layDSSach()
         {
             string sql = "select * from SACH";

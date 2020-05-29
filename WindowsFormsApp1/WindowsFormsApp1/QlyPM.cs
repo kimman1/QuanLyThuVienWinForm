@@ -5,12 +5,16 @@ using System.Data;
 using System.Drawing;
 
 using System.Windows.Forms;
+using WindowsFormsApp1.BUS;
+using WindowsFormsApp1.DAO;
 
 namespace WindowsFormsApp1
 {
     public partial class QlyPM : Form
     {
         int id =-1 ;
+        //PhieuMuonDAO pmDao = new PhieuMuonDAO();
+        BUS_PM busPM = new BUS_PM();
         public QlyPM()
         {
             InitializeComponent();
@@ -18,10 +22,11 @@ namespace WindowsFormsApp1
         private void loadPM()
         {
             //LVPM.Items.Clear();
-            PhieuMuon pm = new PhieuMuon();
-            DataTable dt = pm.layDSPM();
-            GridViewPM.DataSource = dt;
-           
+            // PhieuMuon pm = new PhieuMuon();
+            //  DataTable dt = pm.layDSPM();
+            // GridViewPM.DataSource = dt;
+            //GridViewPM.DataSource = pmDao.listPM();
+            busPM.layDSPM(GridViewPM);
         }
         private void loadCBSach()
         {
@@ -95,8 +100,9 @@ namespace WindowsFormsApp1
         {
             if (id != -1)
             {
-                PhieuMuon pm = new PhieuMuon();
-                pm.xoaPM(id);
+                // PhieuMuon pm = new PhieuMuon();
+                //pm.xoaPM(id);
+                busPM.xoaPM(id);
                 setNullForText();
                 loadPM();
                 id = -1;
@@ -134,14 +140,14 @@ namespace WindowsFormsApp1
             {
                 ErrorMessage("Vui lòng chọn Độc Giả", "Missing Customer ID");
             }
-            else if (MaSach.Equals(-1))
+           /* else if (MaSach.Equals(-1))
             {
                 ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");
             }
             else if (MaNV.Equals(-1))
             {
                 ErrorMessage("Vui lòng chọn Nhân Viên", "Missing EmployeeID");
-            }
+            }*/
             else 
             {
                 if (txtTienNo.Text.Trim().Equals("") && txtSoTienThu.Text.Trim().Equals(""))
@@ -149,8 +155,9 @@ namespace WindowsFormsApp1
                     txtSoTienThu.Text = "0";
                     txtTienNo.Text = "0";
                 }
-                PhieuMuon pm = new PhieuMuon();
-                pm.themPM(DateTime.Now, MaDocGia, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text), MaNV);
+                //PhieuMuon pm = new PhieuMuon();
+                //pm.themPM(DateTime.Now, MaDocGia, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text), MaNV);
+                busPM.themPM(MaDocGia);
                 setNullForText();
                 loadPM();
 
@@ -160,7 +167,7 @@ namespace WindowsFormsApp1
         private void BtnSua_Click(object sender, EventArgs e)
         {
             int MaDocGia = 0;
-            int MaSach = 0;
+           // int MaSach = 0;
             if (id == -1)
             {
                 ErrorMessage("Vui lòng chọn PM để sửa!!!","Data Error");
@@ -172,13 +179,15 @@ namespace WindowsFormsApp1
                 {
                     MaDocGia = (int)rowDocGia[0];
                 }
-                DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
-                if (rowSach != null)
-                {
-                    MaSach = (int)rowSach[0];
-                }
-                PhieuMuon pm = new PhieuMuon();
-                pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text));
+                /* DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
+                 if (rowSach != null)
+                 {
+                     MaSach = (int)rowSach[0];
+                 }
+                 PhieuMuon pm = new PhieuMuon();
+                 pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text));
+                 */
+                busPM.suaPM(id, MaDocGia);
                 setNullForText();
                 loadPM();
                 id = -1;
@@ -191,23 +200,25 @@ namespace WindowsFormsApp1
             {
                 DataGridViewRow row = GridViewPM.Rows[e.RowIndex];
                 id = (int)row.Cells[1].Value;
-                datePickerNM.Value =(DateTime)row.Cells[2].Value;
-                cbTenSach.Text = row.Cells[3].Value.ToString();
-                cbHoTenDocGia.Text = row.Cells[4].Value.ToString();
-                txtTienNo.Text = row.Cells[5].Value.ToString();
-                txtSoTienThu.Text = row.Cells[6].Value.ToString();
-                cbHoTenNV.Text = row.Cells[7].Value.ToString();
-                if (Convert.ToString(row.Cells[8].Value) != string.Empty)
-                {
-                    datePickerNgayTra.Value = (DateTime)row.Cells[8].Value;
-                }
-                else
-                {
-                    
-                    ErrorMessage("Không tìm thấy ngày trả!!!", "DateCheckError");
-                }
-
+                /* datePickerNM.Value =(DateTime)row.Cells[2].Value;
+                 cbTenSach.Text = row.Cells[3].Value.ToString();
+                 cbHoTenDocGia.Text = row.Cells[4].Value.ToString();
+                 txtTienNo.Text = row.Cells[5].Value.ToString();
+                 txtSoTienThu.Text = row.Cells[6].Value.ToString();
                 
+                 if (Convert.ToString(row.Cells[8].Value) != string.Empty)
+                 {
+                     datePickerNgayTra.Value = (DateTime)row.Cells[8].Value;
+                 }
+                 else
+                 {
+
+                     ErrorMessage("Không tìm thấy ngày trả!!!", "DateCheckError");
+                 }
+                 */
+                datePickerNM.Value = (DateTime)row.Cells[2].Value;
+                cbHoTenDocGia.Text = row.Cells[3].Value.ToString();
+                cbHoTenNV.Text = row.Cells[5].Value.ToString();
             }
         }
 
@@ -229,7 +240,7 @@ namespace WindowsFormsApp1
         {
             if (id != -1)
             {
-                PhieuMuon pm = new PhieuMuon();
+                //PhieuMuon pm = new PhieuMuon();
                 List<int> listID = new List<int>();
                 foreach (DataGridViewRow check in GridViewPM.Rows)
                 {
@@ -240,7 +251,7 @@ namespace WindowsFormsApp1
                 }
                 foreach (int a in listID)
                 {
-                    pm.xoaPM(a);
+                    busPM.xoaPM(a);
                 }
                 id = -1;
                 loadPM();
@@ -252,7 +263,7 @@ namespace WindowsFormsApp1
             
         }
 
-        private void btnTraSach_Click(object sender, EventArgs e)
+      /*  private void btnTraSach_Click(object sender, EventArgs e)
         {
             PhieuMuon pm = new PhieuMuon();
             if (id != -1)
@@ -265,6 +276,12 @@ namespace WindowsFormsApp1
                 ErrorMessage("Vui lòng click chọn Phiếu Mượn để xóa", "Missing ID");
             }
             loadPM();
+        }
+        */
+        private void GridViewPM_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PMDetails pm = new PMDetails(id);
+            pm.Show();
         }
     }
 }
