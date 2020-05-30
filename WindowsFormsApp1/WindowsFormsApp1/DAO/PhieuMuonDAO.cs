@@ -78,13 +78,18 @@ namespace WindowsFormsApp1.DAO
            // p.NgayTra = pm.NgayTra;
             db.SubmitChanges();
         }
-        /*   public void DeletePMDetail(int idPMDetails)
+        public void DeletePMDetail(int idPMDetails)
            {
-               CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s=>s.)
-               db.CHITIETPHIEUMUONs.DeleteOnSubmit();
+            CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idPMDetails).FirstOrDefault();
+               db.CHITIETPHIEUMUONs.DeleteOnSubmit(p);
                db.SubmitChanges();
            }
-           */
+        public void GiveBookBackDetail(int idCTPM,DateTime NgayTra)
+        {
+            CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
+            p.NgayTra = NgayTra;
+            db.SubmitChanges();
+        }
         public List<SACH> loadCBSach()
         {
             List<SACH> listSach = db.SACHes.Select(s => s).ToList();

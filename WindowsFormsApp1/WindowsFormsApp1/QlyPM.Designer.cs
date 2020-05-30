@@ -305,6 +305,7 @@
             this.btnTraSach.TabIndex = 20;
             this.btnTraSach.Text = "Trả Sách";
             this.btnTraSach.UseVisualStyleBackColor = true;
+            this.btnTraSach.Click += new System.EventHandler(this.BtnTraSach_Click);
             // 
             // QlyPM
             // 

@@ -80,5 +80,17 @@ namespace WindowsFormsApp1.BUS
            // ctpm.NgayTra = NgayTra;
             pmDAO.EditPMDetail(ctpm, idCTPM);
         }
+        public void xoaPMDetail(int idCTPM)
+        {
+            pmDAO.DeletePMDetail(idCTPM);
+
+        }
+        public void traSachPMDetail(int idCTPM, DateTime NgayTra)
+        {
+          
+                pmDAO.GiveBookBackDetail(idCTPM, NgayTra);
+            
+            
+        }
     }
 }

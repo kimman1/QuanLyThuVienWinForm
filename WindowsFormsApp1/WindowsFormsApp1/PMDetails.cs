@@ -58,7 +58,6 @@ namespace WindowsFormsApp1
              {
                  MaNV = (int)rowNV[0];
              }*/
-            MaSach = (int)cbTenSach.SelectedValue;
             //MaNV = (int)cbHoTenNV.SelectedValue;
             if (MaSach.Equals(-1))
             {
@@ -66,6 +65,7 @@ namespace WindowsFormsApp1
             }
             else
             {
+                MaSach = (int)cbTenSach.SelectedValue;
                 busPM.themPMDetail(MaSach, idPM);
                 loadForm();
             }
@@ -73,18 +73,45 @@ namespace WindowsFormsApp1
 
         private void BtnXoa_Click(object sender, EventArgs e)
         {
-
+            if (idCTPM == -1)
+            {
+                ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
+            }
+            else
+            {
+                busPM.xoaPMDetail(idCTPM);
+                loadForm();
+                idCTPM = -1;
+            }
+           
         }
 
         private void BtnSua_Click(object sender, EventArgs e)
         {
-            busPM.suaPMDetail((int)cbTenSach.SelectedValue, idCTPM);
-            loadForm();
+            if (idCTPM == -1)
+            {
+                ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
+            }
+            else
+            {
+                busPM.suaPMDetail((int)cbTenSach.SelectedValue, idCTPM);
+                loadForm();
+                idCTPM = -1;
+            }
+          
         }
 
         private void BtnThoat_Click(object sender, EventArgs e)
         {
-
+            DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn thoát !", "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dlrs == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            if (dlrs == DialogResult.No)
+            {
+                return;
+            }
         }
         public void ErrorMessage(string message, string title)
         {
@@ -98,7 +125,33 @@ namespace WindowsFormsApp1
                 DataGridViewRow row = GridViewPMDetail.Rows[e.RowIndex];
                 idCTPM = (int)row.Cells[1].Value;
                 cbTenSach.Text = row.Cells[5].Value.ToString();
+                
             }
+        }
+
+        private void BtnTraSach_Click(object sender, EventArgs e)
+        {
+            if (idCTPM == -1)
+            {
+                ErrorMessage("Vui lòng chọn ít nhất 1 Chi tiết Phiếu!!!","Data Check Error");
+            }
+            else
+            {
+                List<int> listID = new List<int>();
+                foreach (DataGridViewRow check in GridViewPMDetail.Rows)
+                {
+                    if ((bool)check.Cells["status"].FormattedValue)
+                    {
+                        listID.Add((int)check.Cells["MaCTPM"].Value);
+                    }
+                }
+                foreach (int id in listID)
+                {
+                    busPM.traSachPMDetail(id, datePickerNgayTra.Value);
+                }
+                loadForm();
+            }
+            
         }
     }
 }

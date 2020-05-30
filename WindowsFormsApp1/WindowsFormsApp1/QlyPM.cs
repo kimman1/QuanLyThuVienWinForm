@@ -283,5 +283,10 @@ namespace WindowsFormsApp1
             PMDetails pm = new PMDetails(id);
             pm.Show();
         }
+
+        private void BtnTraSach_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
