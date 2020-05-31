@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,7 @@ namespace WindowsFormsApp1.DAO
 {
     class PhieuMuonDAO
     {
+        Connection con = new Connection();
         QLTVDataContext db = new QLTVDataContext();
         public IEnumerable<PhieuMuonViewModel> listPM()
         {
@@ -56,12 +59,46 @@ namespace WindowsFormsApp1.DAO
             p.MaDocGia = MaDocGia;
             db.SubmitChanges();
         }
-        public int DeletePM(int idPM)
+      /*  public int DeletePM(int idPM)
         {
-            int result = db.deletePM(idPM);
-            
+          
+            int? result = -1;
+            db.deletePM(idPM, ref result);
             db.SubmitChanges();
-            return result;
+            return (int)result;
+        }*/
+        public int PMtest(int idPM)
+        {
+            string sql = "select MaPhieuMuon from PHIEUMUONSACH where not exists (select MaPhieuMuon from CHITIETPHIEUMUON where CHITIETPHIEUMUON.MaPhieuMuon = PHIEUMUONSACH.MaPhieuMuon)";
+            DataTable dt = con.Execute(sql);
+            List<int> listMulti = new List<int>();
+            int? idreturn = -1;
+            if (dt.Rows.Count > 1)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    listMulti.Add((int.Parse(dt.Rows[i][0].ToString())));
+
+                }
+                foreach (int multi in listMulti)
+                {
+                    if (multi == idPM)
+                    {
+                        PHIEUMUONSACH pm = db.PHIEUMUONSACHes.Where(s => s.MaPhieuMuon == idPM).FirstOrDefault();
+                        db.PHIEUMUONSACHes.DeleteOnSubmit(pm);
+                        db.SubmitChanges();
+                        idreturn = 1;
+                    }
+                }
+            }
+            else
+            {
+                //int? idst = idreturn;
+                db.deletePM(idPM, ref idreturn);
+                db.SubmitChanges();
+            }
+            return (int)idreturn;
         }
         /****************************** Chi tiet PM**************************/
         public void AddPMDetail(CHITIETPHIEUMUON pm)

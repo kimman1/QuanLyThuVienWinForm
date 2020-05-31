@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using WindowsFormsApp1.BUS;
 
 namespace WindowsFormsApp1
 {
     public partial class QlyDocGia : Form
     {
         int id = -1;
+        BUS_DG busdg = new BUS_DG();
         public QlyDocGia()
         {
             InitializeComponent();
         }
         private void loadDocGia()
         {
-            DocGia dg = new DocGia();
-            DataTable dt = dg.LayDSDocGia();
-            GridViewDG.DataSource = dt;
+            
+            busdg.HienThiDG(GridViewDG);
         }
 
         private void QlyDocGia_Load(object sender, EventArgs e)
@@ -58,8 +59,9 @@ namespace WindowsFormsApp1
                 }
                 if (checkDateTime() == false)
                 {
-                    DocGia dg = new DocGia();
-                    dg.ThemDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text));
+                    //DocGia dg = new DocGia();
+                    //dg.ThemDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text));
+                    busdg.ThemDG(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, txtTienNo.Text);
                     loadDocGia();
                 }
                 
@@ -84,8 +86,9 @@ namespace WindowsFormsApp1
                     }
                     if (checkDateTime() == false)
                     {
-                        DocGia dg = new DocGia();
-                        dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
+                        // DocGia dg = new DocGia();
+                        //dg.SuaDocGia(txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value, Int16.Parse(txtTienNo.Text), id);
+                        busdg.SuaDG(id, txtNameDG.Text, datePickerNSDG.Value, txtAddressDG.Text, txtEmailDG.Text, datePickerNgayLapThe.Value, datePickerNgayHetHan.Value,txtTienNo.Text);
                         loadDocGia();
                         setNullForText();
                         id = -1;
@@ -107,8 +110,9 @@ namespace WindowsFormsApp1
                 DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dlrs == DialogResult.Yes)
                 {
-                    DocGia dg = new DocGia();
-                    dg.XoaDocGia(id);
+                    //  DocGia dg = new DocGia();
+                    // dg.XoaDocGia(id);
+                    busdg.XoaDG(id);
                     loadDocGia();
                     setNullForText();
                     id = -1;

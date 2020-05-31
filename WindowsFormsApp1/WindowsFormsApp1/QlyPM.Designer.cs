@@ -128,20 +128,21 @@
             this.groupBox3.Controls.Add(this.GridViewPM);
             this.groupBox3.Location = new System.Drawing.Point(37, 410);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(729, 215);
+            this.groupBox3.Size = new System.Drawing.Size(770, 215);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
             // 
             // GridViewPM
             // 
+            this.GridViewPM.AllowUserToAddRows = false;
             this.GridViewPM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewPM.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.status});
             this.GridViewPM.Location = new System.Drawing.Point(6, 19);
             this.GridViewPM.Name = "GridViewPM";
             this.GridViewPM.RowHeadersWidth = 62;
-            this.GridViewPM.Size = new System.Drawing.Size(717, 190);
+            this.GridViewPM.Size = new System.Drawing.Size(758, 190);
             this.GridViewPM.TabIndex = 19;
             this.GridViewPM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPM_CellClick);
             this.GridViewPM.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPM_CellDoubleClick);
@@ -311,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 487);
+            this.ClientSize = new System.Drawing.Size(819, 656);
             this.Controls.Add(this.btnTraSach);
             this.Controls.Add(this.btnXoaCheckBox);
             this.Controls.Add(this.label8);

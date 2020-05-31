@@ -157,7 +157,7 @@ namespace WindowsFormsApp1
                 }
                 //PhieuMuon pm = new PhieuMuon();
                 //pm.themPM(DateTime.Now, MaDocGia, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text), MaNV);
-                busPM.themPM(MaDocGia);
+                busPM.themPM(MaDocGia,MaNV);
                 setNullForText();
                 loadPM();
 

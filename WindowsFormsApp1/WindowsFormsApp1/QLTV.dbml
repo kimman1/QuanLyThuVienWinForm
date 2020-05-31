@@ -79,8 +79,14 @@
       <Association Name="NHANVIEN_PHIEUTHUTIEN" Member="NHANVIEN" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NHANVIEN" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.deleteDG" Method="deleteDG">
+    <Parameter Name="idDG" Type="System.Int32" DbType="Int" />
+    <Parameter Name="outputresult" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.deletePM" Method="deletePM">
-    <Parameter Name="IdPM" Parameter="idPM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idPM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="outputresult" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

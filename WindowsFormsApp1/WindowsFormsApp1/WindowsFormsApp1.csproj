@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\BUS_DG.cs" />
     <Compile Include="BUS\BUS_NV.cs" />
     <Compile Include="BUS\BUS_PM.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="DAO\DocGiaDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
     <Compile Include="DAO\PhieuMuonDAO.cs" />
     <Compile Include="DocGia.cs" />

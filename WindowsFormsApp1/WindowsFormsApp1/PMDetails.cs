@@ -47,18 +47,10 @@ namespace WindowsFormsApp1
         private void BtnThem_Click(object sender, EventArgs e)
         {
             int MaSach = -1;
-            //int MaNV = -1;
-            /* DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
-             if (rowSach != null)
-             {
-                 MaSach = (int)rowSach[0];
-             }
-             DataRowView rowNV = (DataRowView)cbHoTenNV.SelectedItem;
-             if (rowNV != null)
-             {
-                 MaNV = (int)rowNV[0];
-             }*/
-            //MaNV = (int)cbHoTenNV.SelectedValue;
+            if (cbTenSach.SelectedValue != null)
+            {
+                MaSach = (int)cbTenSach.SelectedValue;
+            }
             if (MaSach.Equals(-1))
             {
                 ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");

@@ -139,10 +139,19 @@ namespace WindowsFormsApp1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deletePM")]
-		public int deletePM([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IdPM", DbType="Int")] System.Nullable<int> idPM)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteDG")]
+		public int deleteDG([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idDG, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> outputresult)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPM);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idDG, outputresult);
+			outputresult = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deletePM")]
+		public int deletePM([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idPM, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> outputresult)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idPM, outputresult);
+			outputresult = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
 	}

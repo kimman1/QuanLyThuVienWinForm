@@ -10,33 +10,32 @@ namespace WindowsFormsApp1.BUS
 {
     class BUS_PM
     {
-        PhieuMuonDAO pmDAO;
-        public BUS_PM()
-        {
-            pmDAO = new PhieuMuonDAO();
-        }
+        PhieuMuonDAO pmDAO = new PhieuMuonDAO();
+        
         public void layDSPM(DataGridView dg)
         {
             dg.DataSource = pmDAO.listPM();
         }
-        public void themPM(int MaDocGia)
+        public void themPM(int MaDocGia, int MaNhanVien)
         {
             PHIEUMUONSACH pm = new PHIEUMUONSACH();
             pm.NgayMuon = DateTime.Now;
             pm.MaDocGia = MaDocGia;
+            pm.MaNhanVien = MaNhanVien;
             pmDAO.AddPM(pm);
         }
         public void xoaPM(int MaDocGia)
         {
-            int result = pmDAO.DeletePM(MaDocGia);
-            if (result == 0)
-            {
-                MessageBox.Show("Có lỗi trong quá trình xóa. Kiểm tra chi tiết PM", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else 
-            {
-                MessageBox.Show("Có lỗi trong quá trình xóa", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            int result = pmDAO.PMtest(MaDocGia); //pmDAO.DeletePM(MaDocGia);
+             if (result == 0 || result == -1)
+             {
+                 MessageBox.Show("Có lỗi trong quá trình xóa. Kiểm tra chi tiết PM", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+             else 
+             {
+                 MessageBox.Show("Xoá thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             }
+            //pmDAO.PMtest(MaDocGia);
         }
         public void suaPM(int idPM, int MaDocGia)
         {
