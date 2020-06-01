@@ -193,6 +193,10 @@ namespace WindowsFormsApp1
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
+        private void btnQLyPTT_Click(object sender, EventArgs e)
+        {
+            var FormPhieuThuTien = new FormPhieuThuTien();
+            FormPhieuThuTien.Show();
+        }
     }
 }

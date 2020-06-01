@@ -98,7 +98,7 @@ namespace WindowsFormsApp1
             DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn thoát !", "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dlrs == DialogResult.Yes)
             {
-                Application.Exit();
+                this.Close();
             }
             if (dlrs == DialogResult.No)
             {
@@ -125,7 +125,7 @@ namespace WindowsFormsApp1
         {
             if (idCTPM == -1)
             {
-                ErrorMessage("Vui lòng chọn ít nhất 1 Chi tiết Phiếu!!!","Data Check Error");
+                ErrorMessage("Vui lòng check ít nhất 1 Chi tiết Phiếu!!!","Data Check Error");
             }
             else
             {
@@ -135,15 +135,54 @@ namespace WindowsFormsApp1
                     if ((bool)check.Cells["status"].FormattedValue)
                     {
                         listID.Add((int)check.Cells["MaCTPM"].Value);
+
                     }
+                    else
+                    {
+                        idCTPM = -1;
+                    }
+                    
                 }
                 foreach (int id in listID)
                 {
                     busPM.traSachPMDetail(id, datePickerNgayTra.Value);
                 }
+                idCTPM = -1;
                 loadForm();
             }
             
+        }
+
+        private void btnXoaCheckBox_Click(object sender, EventArgs e)
+        {
+            if (idCTPM != -1)
+            {
+                //PhieuMuon pm = new PhieuMuon();
+                List<int> listID = new List<int>();
+                foreach (DataGridViewRow check in GridViewPMDetail.Rows)
+                {
+                    if ((bool)check.Cells["status"].FormattedValue)
+                    {
+                        listID.Add((int)check.Cells["MaCTPM"].Value);
+                    }
+                    else
+                    {
+                        idCTPM = -1;
+                    }
+                    
+                }
+                foreach (int a in listID)
+                {
+                    busPM.xoaPMDetail(a);
+                }
+                idCTPM = -1;
+                loadForm();
+                
+            }
+            else
+            {
+                ErrorMessage("Vui lòng chọn ít nhất một checkbox", "Missing ID");
+            }
         }
     }
 }

@@ -51,17 +51,25 @@
   <ItemGroup>
     <Compile Include="BUS\BUS_DG.cs" />
     <Compile Include="BUS\BUS_NV.cs" />
+    <Compile Include="BUS\BUS_PhieuThuTien.cs" />
     <Compile Include="BUS\BUS_PM.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="DAO\DocGiaDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
     <Compile Include="DAO\PhieuMuonDAO.cs" />
+    <Compile Include="DAO\PhieuThuTienDAO.cs" />
     <Compile Include="DocGia.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPhieuThuTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhieuThuTien.Designer.cs">
+      <DependentUpon>FormPhieuThuTien.cs</DependentUpon>
     </Compile>
     <Compile Include="NhanVien.cs" />
     <Compile Include="PhieuMuon.cs" />
@@ -99,6 +107,9 @@
     <Compile Include="Sach.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhieuThuTien.resx">
+      <DependentUpon>FormPhieuThuTien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PMDetails.resx">
       <DependentUpon>PMDetails.cs</DependentUpon>

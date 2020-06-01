@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBQuanLyThuVien" Class="QLTVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-3AERN6V\admin;Initial Catalog=DBQuanLyThuVien;Integrated Security=True" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="DBQuanLyThuVienConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=KimMan\SQL;Initial Catalog=DBQuanLyThuVien;Integrated Security=True" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="DBQuanLyThuVienConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BANGCAP" Member="BANGCAPs">
     <Type Name="BANGCAP">
       <Column Name="MaBangCap" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -27,6 +27,16 @@
       <Column Name="NgayTra" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="SACH_CHITIETPHIEUMUON" Member="SACH" ThisKey="MaSach" OtherKey="MaSach" Type="SACH" IsForeignKey="true" />
       <Association Name="PHIEUMUONSACH_CHITIETPHIEUMUON" Member="PHIEUMUONSACH" ThisKey="MaPhieuMuon" OtherKey="MaPhieuMuon" Type="PHIEUMUONSACH" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHITIETPHIEUTHUTIEN" Member="CHITIETPHIEUTHUTIENs">
+    <Type Name="CHITIETPHIEUTHUTIEN">
+      <Column Name="MaCTPTT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaPhieuThuTien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaSach" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayThu" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SoTien" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="PHIEUTHUTIEN_CHITIETPHIEUTHUTIEN" Member="PHIEUTHUTIEN" ThisKey="MaPhieuThuTien" OtherKey="MaPhieuThuTien" Type="PHIEUTHUTIEN" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DOCGIA" Member="DOCGIAs">
@@ -75,6 +85,7 @@
       <Column Name="MaDocGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNhanVien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaPhieuMuon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PHIEUTHUTIEN_CHITIETPHIEUTHUTIEN" Member="CHITIETPHIEUTHUTIENs" ThisKey="MaPhieuThuTien" OtherKey="MaPhieuThuTien" Type="CHITIETPHIEUTHUTIEN" />
       <Association Name="DOCGIA_PHIEUTHUTIEN" Member="DOCGIA" ThisKey="MaDocGia" OtherKey="MaDocGia" Type="DOCGIA" IsForeignKey="true" />
       <Association Name="NHANVIEN_PHIEUTHUTIEN" Member="NHANVIEN" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NHANVIEN" IsForeignKey="true" />
     </Type>

@@ -13,7 +13,6 @@ namespace WindowsFormsApp1
     public partial class QlyPM : Form
     {
         int id =-1 ;
-        //PhieuMuonDAO pmDao = new PhieuMuonDAO();
         BUS_PM busPM = new BUS_PM();
         public QlyPM()
         {
@@ -21,12 +20,7 @@ namespace WindowsFormsApp1
         }
         private void loadPM()
         {
-            //LVPM.Items.Clear();
-            // PhieuMuon pm = new PhieuMuon();
-            //  DataTable dt = pm.layDSPM();
-            // GridViewPM.DataSource = dt;
-            //GridViewPM.DataSource = pmDao.listPM();
-            busPM.layDSPM(GridViewPM);
+            busPM.layDSPM(GridViewPTT);
         }
         private void loadCBSach()
         {
@@ -140,14 +134,6 @@ namespace WindowsFormsApp1
             {
                 ErrorMessage("Vui lòng chọn Độc Giả", "Missing Customer ID");
             }
-           /* else if (MaSach.Equals(-1))
-            {
-                ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");
-            }
-            else if (MaNV.Equals(-1))
-            {
-                ErrorMessage("Vui lòng chọn Nhân Viên", "Missing EmployeeID");
-            }*/
             else 
             {
                 if (txtTienNo.Text.Trim().Equals("") && txtSoTienThu.Text.Trim().Equals(""))
@@ -198,7 +184,7 @@ namespace WindowsFormsApp1
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = GridViewPM.Rows[e.RowIndex];
+                DataGridViewRow row = GridViewPTT.Rows[e.RowIndex];
                 id = (int)row.Cells[1].Value;
                 /* datePickerNM.Value =(DateTime)row.Cells[2].Value;
                  cbTenSach.Text = row.Cells[3].Value.ToString();
@@ -221,16 +207,6 @@ namespace WindowsFormsApp1
                 cbHoTenNV.Text = row.Cells[5].Value.ToString();
             }
         }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         public void ErrorMessage(string message, string title)
         {
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -242,7 +218,7 @@ namespace WindowsFormsApp1
             {
                 //PhieuMuon pm = new PhieuMuon();
                 List<int> listID = new List<int>();
-                foreach (DataGridViewRow check in GridViewPM.Rows)
+                foreach (DataGridViewRow check in GridViewPTT.Rows)
                 {
                     if ((bool)check.Cells["status"].FormattedValue)
                     {
@@ -263,30 +239,11 @@ namespace WindowsFormsApp1
             
         }
 
-      /*  private void btnTraSach_Click(object sender, EventArgs e)
-        {
-            PhieuMuon pm = new PhieuMuon();
-            if (id != -1)
-            {
-                pm.TraSach(id, datePickerNgayTra.Value);
-                id = -1;
-            }
-            else
-            {
-                ErrorMessage("Vui lòng click chọn Phiếu Mượn để xóa", "Missing ID");
-            }
-            loadPM();
-        }
-        */
         private void GridViewPM_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             PMDetails pm = new PMDetails(id);
             pm.Show();
         }
 
-        private void BtnTraSach_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

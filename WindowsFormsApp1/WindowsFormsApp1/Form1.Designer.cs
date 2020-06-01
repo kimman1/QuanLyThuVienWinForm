@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GridViewIndex = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
@@ -49,24 +50,35 @@
             this.btnQLyDocGia = new System.Windows.Forms.Button();
             this.btnQlySach = new System.Windows.Forms.Button();
             this.btnQlyPM = new System.Windows.Forms.Button();
-            this.GridViewIndex = new System.Windows.Forms.DataGridView();
+            this.btnQLyPTT = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewIndex)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.GridViewIndex);
-            this.groupBox3.Location = new System.Drawing.Point(62, 525);
+            this.groupBox3.Location = new System.Drawing.Point(62, 566);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(1094, 331);
+            this.groupBox3.Size = new System.Drawing.Size(1094, 290);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
+            // 
+            // GridViewIndex
+            // 
+            this.GridViewIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewIndex.Location = new System.Drawing.Point(7, 27);
+            this.GridViewIndex.Name = "GridViewIndex";
+            this.GridViewIndex.RowHeadersWidth = 62;
+            this.GridViewIndex.RowTemplate.Height = 28;
+            this.GridViewIndex.Size = new System.Drawing.Size(1077, 296);
+            this.GridViewIndex.TabIndex = 11;
+            this.GridViewIndex.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewIndex_CellClick);
             // 
             // label1
             // 
@@ -282,22 +294,23 @@
             this.btnQlyPM.UseVisualStyleBackColor = true;
             this.btnQlyPM.Click += new System.EventHandler(this.BtnQlyPM_Click);
             // 
-            // GridViewIndex
+            // btnQLyPTT
             // 
-            this.GridViewIndex.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewIndex.Location = new System.Drawing.Point(7, 27);
-            this.GridViewIndex.Name = "GridViewIndex";
-            this.GridViewIndex.RowHeadersWidth = 62;
-            this.GridViewIndex.RowTemplate.Height = 28;
-            this.GridViewIndex.Size = new System.Drawing.Size(1077, 296);
-            this.GridViewIndex.TabIndex = 11;
-            this.GridViewIndex.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewIndex_CellClick);
+            this.btnQLyPTT.Location = new System.Drawing.Point(352, 473);
+            this.btnQLyPTT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnQLyPTT.Name = "btnQLyPTT";
+            this.btnQLyPTT.Size = new System.Drawing.Size(144, 83);
+            this.btnQLyPTT.TabIndex = 11;
+            this.btnQLyPTT.Text = "Quản Lý PTT";
+            this.btnQLyPTT.UseVisualStyleBackColor = true;
+            this.btnQLyPTT.Click += new System.EventHandler(this.btnQLyPTT_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1224, 895);
+            this.Controls.Add(this.btnQLyPTT);
             this.Controls.Add(this.btnQlyPM);
             this.Controls.Add(this.btnQlySach);
             this.Controls.Add(this.btnQLyDocGia);
@@ -310,10 +323,10 @@
             this.Text = "s";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewIndex)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -341,6 +354,7 @@
         private System.Windows.Forms.Button btnQlySach;
         private System.Windows.Forms.Button btnQlyPM;
         private System.Windows.Forms.DataGridView GridViewIndex;
+        private System.Windows.Forms.Button btnQLyPTT;
     }
 }
 

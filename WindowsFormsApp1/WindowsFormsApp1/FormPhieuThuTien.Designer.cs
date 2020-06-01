@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class QlyPM
+    partial class FormPhieuThuTien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.GridViewPTT = new System.Windows.Forms.DataGridView();
-            this.status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbTenSach = new System.Windows.Forms.ComboBox();
             this.cbHoTenNV = new System.Windows.Forms.ComboBox();
@@ -51,139 +41,32 @@
             this.label6 = new System.Windows.Forms.Label();
             this.datePickerNM = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnXoaCheckBox = new System.Windows.Forms.Button();
-            this.groupBox2.SuspendLayout();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GridViewPTT = new System.Windows.Forms.DataGridView();
+            this.status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewPTT)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.SystemColors.Control;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(40, 35);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(1108, 77);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "DANH MỤC PHIẾU MƯỢN";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnThoat);
-            this.groupBox2.Controls.Add(this.btnSua);
-            this.groupBox2.Controls.Add(this.btnXoa);
-            this.groupBox2.Controls.Add(this.btnThem);
-            this.groupBox2.Location = new System.Drawing.Point(567, 431);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(582, 152);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Location = new System.Drawing.Point(387, 43);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(117, 83);
-            this.btnThoat.TabIndex = 3;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.BtnThoat_Click);
-            // 
-            // btnSua
-            // 
-            this.btnSua.Location = new System.Drawing.Point(261, 43);
-            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(117, 83);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Location = new System.Drawing.Point(135, 43);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(117, 83);
-            this.btnXoa.TabIndex = 1;
-            this.btnXoa.Text = "Xoá";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
-            // 
-            // btnThem
-            // 
-            this.btnThem.Location = new System.Drawing.Point(9, 43);
-            this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(117, 83);
-            this.btnThem.TabIndex = 0;
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.GridViewPTT);
-            this.groupBox3.Location = new System.Drawing.Point(56, 631);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(1155, 331);
-            this.groupBox3.TabIndex = 17;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Thông tin chung";
-            // 
-            // GridViewPTT
-            // 
-            this.GridViewPTT.AllowUserToAddRows = false;
-            this.GridViewPTT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridViewPTT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.status});
-            this.GridViewPTT.Location = new System.Drawing.Point(9, 29);
-            this.GridViewPTT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GridViewPTT.Name = "GridViewPTT";
-            this.GridViewPTT.RowHeadersWidth = 62;
-            this.GridViewPTT.Size = new System.Drawing.Size(1137, 292);
-            this.GridViewPTT.TabIndex = 19;
-            this.GridViewPTT.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPM_CellClick);
-            this.GridViewPTT.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewPM_CellDoubleClick);
-            // 
-            // status
-            // 
-            this.status.HeaderText = "GiveBookBack";
-            this.status.MinimumWidth = 8;
-            this.status.Name = "status";
-            this.status.Width = 150;
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(40, -132);
+            this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1108, 75);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Danh mục nhân viên";
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Phiếu Thu Tiền";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 92);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Tên Sách:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox1
             // 
@@ -199,12 +82,12 @@
             this.groupBox1.Controls.Add(this.datePickerNM);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(40, 117);
+            this.groupBox1.Location = new System.Drawing.Point(21, 89);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Size = new System.Drawing.Size(1108, 305);
-            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
             // cbTenSach
@@ -308,65 +191,144 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Ngày mượn:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 92);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Tên Sách:";
+            // 
             // btnXoaCheckBox
             // 
-            this.btnXoaCheckBox.Location = new System.Drawing.Point(434, 474);
+            this.btnXoaCheckBox.Location = new System.Drawing.Point(385, 404);
             this.btnXoaCheckBox.Name = "btnXoaCheckBox";
             this.btnXoaCheckBox.Size = new System.Drawing.Size(128, 83);
-            this.btnXoaCheckBox.TabIndex = 19;
+            this.btnXoaCheckBox.TabIndex = 24;
             this.btnXoaCheckBox.Text = "Xóa danh sách đã chọn";
             this.btnXoaCheckBox.UseVisualStyleBackColor = true;
-            this.btnXoaCheckBox.Click += new System.EventHandler(this.btnXoaList_Click);
             // 
-            // QlyPM
+            // btnThoat
+            // 
+            this.btnThoat.Location = new System.Drawing.Point(898, 404);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(117, 83);
+            this.btnThoat.TabIndex = 23;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            // 
+            // btnSua
+            // 
+            this.btnSua.Location = new System.Drawing.Point(772, 404);
+            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(117, 83);
+            this.btnSua.TabIndex = 22;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Location = new System.Drawing.Point(646, 404);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(117, 83);
+            this.btnXoa.TabIndex = 21;
+            this.btnXoa.Text = "Xoá";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            // 
+            // btnThem
+            // 
+            this.btnThem.Location = new System.Drawing.Point(520, 404);
+            this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(117, 83);
+            this.btnThem.TabIndex = 20;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.GridViewPTT);
+            this.groupBox3.Location = new System.Drawing.Point(13, 507);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Size = new System.Drawing.Size(1155, 331);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thông tin chung";
+            // 
+            // GridViewPTT
+            // 
+            this.GridViewPTT.AllowUserToAddRows = false;
+            this.GridViewPTT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridViewPTT.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.status});
+            this.GridViewPTT.Location = new System.Drawing.Point(9, 29);
+            this.GridViewPTT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridViewPTT.Name = "GridViewPTT";
+            this.GridViewPTT.RowHeadersWidth = 62;
+            this.GridViewPTT.Size = new System.Drawing.Size(1137, 292);
+            this.GridViewPTT.TabIndex = 19;
+            // 
+            // status
+            // 
+            this.status.HeaderText = "GiveBookBack";
+            this.status.MinimumWidth = 8;
+            this.status.Name = "status";
+            this.status.Width = 150;
+            // 
+            // FormPhieuThuTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 1009);
-            this.Controls.Add(this.btnXoaCheckBox);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(1166, 967);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnXoaCheckBox);
+            this.Controls.Add(this.btnThoat);
+            this.Controls.Add(this.btnSua);
+            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnThem);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "QlyPM";
-            this.Text = "QlyPM";
-            this.Load += new System.EventHandler(this.QlyPM_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridViewPTT)).EndInit();
+            this.Controls.Add(this.label1);
+            this.Name = "FormPhieuThuTien";
+            this.Text = "FormPhieuThuTien";
+            this.Load += new System.EventHandler(this.FormPhieuThuTien_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridViewPTT)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbTenSach;
+        private System.Windows.Forms.ComboBox cbHoTenNV;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtSoTienThu;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbHoTenDocGia;
         private System.Windows.Forms.TextBox txtTienNo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker datePickerNM;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbHoTenDocGia;
-        private System.Windows.Forms.TextBox txtSoTienThu;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbHoTenNV;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DataGridView GridViewPTT;
-        private System.Windows.Forms.ComboBox cbTenSach;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn status;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnXoaCheckBox;
+        private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView GridViewPTT;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn status;
     }
 }
