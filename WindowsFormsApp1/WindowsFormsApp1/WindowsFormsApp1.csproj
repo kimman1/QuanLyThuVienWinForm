@@ -53,11 +53,13 @@
     <Compile Include="BUS\BUS_NV.cs" />
     <Compile Include="BUS\BUS_PhieuThuTien.cs" />
     <Compile Include="BUS\BUS_PM.cs" />
+    <Compile Include="BUS\BUS_Sach.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="DAO\DocGiaDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
     <Compile Include="DAO\PhieuMuonDAO.cs" />
     <Compile Include="DAO\PhieuThuTienDAO.cs" />
+    <Compile Include="DAO\SachDAO.cs" />
     <Compile Include="DocGia.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

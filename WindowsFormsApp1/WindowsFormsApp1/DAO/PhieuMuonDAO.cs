@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.DAO
                                                     where (o.MaPhieuMuon == idPM)
                                                     select new CTPMViewModel
                                                     {
-                                                        MaCTPM = o.MaCTPM,
+                                                       
                                                         MaPhieuMuon = o.MaPhieuMuon,
                                                         MaSach = o.MaSach,
                                                         NgayTra = o.NgayTra.ToString(),
@@ -108,8 +108,8 @@ namespace WindowsFormsApp1.DAO
         }
         public void EditPMDetail(CHITIETPHIEUMUON pm, int idCTPM)
         {
-            var p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
-            p.MaSach = pm.MaSach;
+          //  var p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
+           // p.MaSach = pm.MaSach;
             //p.MaCTPM = pm.MaCTPM;
             //p.MaPhieuMuon = pm.MaPhieuMuon;
            // p.NgayTra = pm.NgayTra;
@@ -117,14 +117,14 @@ namespace WindowsFormsApp1.DAO
         }
         public void DeletePMDetail(int idPMDetails)
            {
-            CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idPMDetails).FirstOrDefault();
-               db.CHITIETPHIEUMUONs.DeleteOnSubmit(p);
+            //CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idPMDetails).FirstOrDefault();
+             //  db.CHITIETPHIEUMUONs.DeleteOnSubmit(p);
                db.SubmitChanges();
            }
         public void GiveBookBackDetail(int idCTPM,DateTime NgayTra)
         {
-            CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
-            p.NgayTra = NgayTra;
+          //  CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
+          //  p.NgayTra = NgayTra;
             db.SubmitChanges();
         }
         public List<SACH> loadCBSach()
@@ -152,7 +152,7 @@ namespace WindowsFormsApp1.DAO
     }
     public class CTPMViewModel
     {
-        public int MaCTPM { get; set; }
+        
         public int MaPhieuMuon { get; set; }
         public int MaSach { get; set; }
         public string NgayTra { get; set; }

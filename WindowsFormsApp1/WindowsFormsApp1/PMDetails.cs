@@ -27,17 +27,22 @@ namespace WindowsFormsApp1
         }
         public void loadcbNV()
         {
-            busPM.loadComboNV(cbHoTenNV);
+            //busPM.loadComboNV(cbHoTenNV);
         }
         public void loadGridView()
         {
             busPM.layPMDetail(idPM, GridViewPMDetail);
+        }
+        public void loadchecklistbox()
+        {
+            busPM.loadCheckList(checklistSach);
         }
         public void loadForm()
         {
             loadGridView();
             loadCbSach();
             loadcbNV();
+            loadchecklistbox();
         }
         private void PMDetails_Load(object sender, EventArgs e)
         {
@@ -46,21 +51,41 @@ namespace WindowsFormsApp1
 
         private void BtnThem_Click(object sender, EventArgs e)
         {
-            int MaSach = -1;
-            if (cbTenSach.SelectedValue != null)
+            /*int MaSach = -1;
+             if (cbTenSach.SelectedValue != null)
+             {
+                 MaSach = (int)cbTenSach.SelectedValue;
+             }
+             if (MaSach.Equals(-1))
+             {
+                 ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");
+             }
+             else
+             {
+                 MaSach = (int)cbTenSach.SelectedValue;
+                 busPM.themPMDetail(MaSach, idPM);
+                 loadForm();
+             }
+             */
+            List<CHITIETPHIEUMUON> listctpm = new List<CHITIETPHIEUMUON>();
+            if (checklistSach.CheckedItems.Count != 0)
             {
-                MaSach = (int)cbTenSach.SelectedValue;
-            }
-            if (MaSach.Equals(-1))
-            {
-                ErrorMessage("Vui lòng chọn Sách", "Missing Book ID");
+                foreach (var item in checklistSach.CheckedItems)
+                {
+                    string tenSach = (item as SACH).TenSach;
+                    int idSach = (item as SACH).MaSach;
+                    CHITIETPHIEUMUON ctpm = new CHITIETPHIEUMUON();
+                    ctpm.MaPhieuMuon = idPM;
+                    ctpm.MaSach = idSach;
+                    listctpm.Add(ctpm);
+                }
+                busPM.themPMDetailTemp(listctpm, GridViewPMDetail);
             }
             else
             {
-                MaSach = (int)cbTenSach.SelectedValue;
-                busPM.themPMDetail(MaSach, idPM);
-                loadForm();
+                ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
             }
+            
         }
 
         private void BtnXoa_Click(object sender, EventArgs e)
@@ -115,8 +140,8 @@ namespace WindowsFormsApp1
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = GridViewPMDetail.Rows[e.RowIndex];
-                idCTPM = (int)row.Cells[1].Value;
-                cbTenSach.Text = row.Cells[5].Value.ToString();
+                //idCTPM = (int)row.Cells[1].Value;
+                cbTenSach.Text = row.Cells[4].Value.ToString();
                 
             }
         }
@@ -183,6 +208,16 @@ namespace WindowsFormsApp1
             {
                 ErrorMessage("Vui lòng chọn ít nhất một checkbox", "Missing ID");
             }
+        }
+
+        private void BtnLuu_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < GridViewPMDetail.Rows.Count; i++)
+            {
+                int idSach = (int) GridViewPMDetail.Rows[i].Cells["MaSach"].Value;
+                busPM.themPMDetail(idSach, idPM);
+            }
+            loadForm();
         }
     }
 }

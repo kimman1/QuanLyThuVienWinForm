@@ -60,12 +60,41 @@ namespace WindowsFormsApp1.BUS
             cb.SelectedIndex = -1;
             cb.Text = "--Select--";
         }
-        public void layPMDetail(int idPM, DataGridView dg)
+        public void loadCheckList(CheckedListBox ck)
+        {
+            ck.DataSource = null;
+            ck.DataSource = pmDAO.loadCBSach();
+            ck.DisplayMember = "TenSach";
+            ck.ValueMember = "MaSach";
+            ck.SelectedIndex = -1;
+            
+
+
+        }
+        public void layPMDetail(int idPM, DataGridView dg, CheckedListBox ck)
         {
             dg.DataSource = pmDAO.listCTTPM(idPM);
+            for (int i = 0; i < dg.Rows.Count; i++)
+            {
+                foreach (var item in ck.Items)
+                {
+                    if ((item as SACH).MaSach == (int)dg.Rows[i].Cells["MaSach"].Value)
+                    {
+                        ck.SetItemChecked()
+                    }
+                }
+                
+            }
+           
+        }
+        public void themPMDetailTemp(List<CHITIETPHIEUMUON> listctpm , DataGridView dg)
+        {
+            dg.DataSource = null;
+            dg.DataSource = listctpm;
         }
         public void themPMDetail(int MaSach, int MaPhieuMuon)
         {
+            
             CHITIETPHIEUMUON ctpm = new CHITIETPHIEUMUON();
             ctpm.MaPhieuMuon = MaPhieuMuon;
             ctpm.MaSach = MaSach;

@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         {
             busPM.layDSPM(GridViewPTT);
         }
-        private void loadCBSach()
+       /* private void loadCBSach()
         {
             cbTenSach.DataSource = null;
             PhieuMuon pm = new PhieuMuon();
@@ -33,7 +33,7 @@ namespace WindowsFormsApp1
             cbTenSach.SelectedIndex = -1;
             cbTenSach.Text = "--Select--";
 
-        }
+        }*/
         private void loadCBNV()
         {
             //cbHoTenNV.Items.Clear();
@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
             datePickerNM.Value = DateTime.Now;
             loadCBDocGia();
             loadCBNV();
-            loadCBSach();
+            //loadCBSach();
         }
 
         private void QlyPM_Load(object sender, EventArgs e)
@@ -120,11 +120,11 @@ namespace WindowsFormsApp1
             {
                  MaDocGia = (int)rowDocGia[0];
             }
-            DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
+           /* DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
             if (rowSach != null)
             {
                 MaSach = (int)rowSach[0];
-            }
+            }*/
             DataRowView rowNV = (DataRowView)cbHoTenNV.SelectedItem;
             if (rowNV != null)
             {
