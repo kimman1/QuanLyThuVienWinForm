@@ -121,10 +121,10 @@ namespace WindowsFormsApp1.DAO
              //  db.CHITIETPHIEUMUONs.DeleteOnSubmit(p);
                db.SubmitChanges();
            }
-        public void GiveBookBackDetail(int idCTPM,DateTime NgayTra)
+        public void GiveBookBackDetail(int idPM,int idSach,DateTime NgayTra)
         {
-          //  CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaCTPM == idCTPM).FirstOrDefault();
-          //  p.NgayTra = NgayTra;
+           CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaPhieuMuon == idPM && s.MaSach == idSach).FirstOrDefault();
+            p.NgayTra = NgayTra;
             db.SubmitChanges();
         }
         public List<SACH> loadCBSach()

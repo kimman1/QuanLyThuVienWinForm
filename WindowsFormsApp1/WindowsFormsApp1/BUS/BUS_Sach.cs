@@ -20,5 +20,28 @@ namespace WindowsFormsApp1.BUS
             dg.DataSource = null;
             dg.DataSource = sachdao.listSach();
         }
+        public void ThemSach(string tenSach, string tacGia, DateTime NamXuatBan, string NhaXuatBan, string triGia, DateTime NgayNhap)
+        {
+            SACH sach = new SACH();
+            sach.TenSach = tenSach;
+            sach.TacGia = tacGia;
+            sach.NamXuatBan = NamXuatBan;
+            sach.NhaXuatBan = NhaXuatBan;
+            sach.TriGia = triGia;
+            sach.NgayNhap = NgayNhap;
+            sachdao.addSach(sach);
+        }
+        public void xoaSach(int idSach)
+        {
+            int result = sachdao.deleteSach(idSach);
+            if (result == 0 || result == -1)
+            {
+                MessageBox.Show("Có lỗi trong quá trình xóa. Kiểm tra Phiếu Mượn", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Xóa thành công!", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

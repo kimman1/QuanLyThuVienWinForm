@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBQuanLyThuVien" Class="QLTVDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-3AERN6V\admin;Initial Catalog=DBQuanLyThuVien;Integrated Security=True" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="DBQuanLyThuVienConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=KimMan\SQL;Initial Catalog=DBQuanLyThuVien;Integrated Security=True" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="DBQuanLyThuVienConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BANGCAP" Member="BANGCAPs">
     <Type Name="BANGCAP">
       <Column Name="MaBangCap" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,6 +81,11 @@
   <Function Name="dbo.deleteDG" Method="deleteDG">
     <Parameter Name="idDG" Type="System.Int32" DbType="Int" />
     <Parameter Name="outputresult" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.deleteSach" Method="deleteSach">
+    <Parameter Name="idSach" Type="System.Int32" DbType="Int" />
+    <Parameter Name="returnvalue" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.deletePM" Method="deletePM">

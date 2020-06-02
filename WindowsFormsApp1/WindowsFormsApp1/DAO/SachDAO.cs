@@ -14,6 +14,17 @@ namespace WindowsFormsApp1.DAO
             var p = db.SACHes.Select(s => s);
             return p;
         }
+        public void addSach(SACH sach)
+        {
+            db.SACHes.InsertOnSubmit(sach);
+            db.SubmitChanges();
+        }
+        public int deleteSach(int idSach)
+        {
+            int? returnvalue = -1;
+            db.deleteSach(idSach, ref returnvalue);
+            return (int)returnvalue;
+        }
 
     }
 }

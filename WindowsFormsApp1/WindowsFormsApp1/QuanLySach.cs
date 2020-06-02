@@ -9,11 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using WindowsFormsApp1.BUS;
 
 namespace WindowsFormsApp1
 {
     public partial class QuanLySach : Form
     {
+        BUS_Sach busSach = new BUS_Sach();
         Sach sach;
         int id = -1;
         public QuanLySach()
@@ -22,9 +24,8 @@ namespace WindowsFormsApp1
         }
         private void loadSach()
         {
-            sach = new Sach();
-            DataTable dt = sach.LayDSSach();
-            GridViewSach.DataSource = dt;
+            setNulForText();
+             busSach.HienThiDSSach(GridViewSach);
         }
         private void QuanLySach_Load(object sender, EventArgs e)
         {
@@ -48,7 +49,7 @@ namespace WindowsFormsApp1
 
         private void BtnThemSach_Click(object sender, EventArgs e)
         {
-            sach = new Sach();
+            
             if (txtTenSach.Text.Equals(""))
             {
                 ErrorMessage("Điền tên sách!!!", "Error");
@@ -71,8 +72,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                sach.ThemSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value);
-                setNulForText();
+                busSach.ThemSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value);
                 loadSach();
             }
         }
@@ -101,14 +101,12 @@ namespace WindowsFormsApp1
                 DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Warning !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dlrs == DialogResult.Yes)
                 {
-                   
-                        sach = new Sach();
-                        sach.XoaSach(id);
-                        setNulForText();
-                        loadSach();
+
+                    // sach = new Sach();
+                    //sach.XoaSach(id);
+                    busSach.xoaSach(id);
+                    loadSach();
                         id = -1;
-                   
-                   
                 }
                 else
                 {

@@ -54,7 +54,7 @@ namespace WindowsFormsApp1
     #endregion
 		
 		public QLTVDataContext() : 
-				base(global::WindowsFormsApp1.Properties.Settings.Default.DBQuanLyThuVienConnectionString, mappingSource)
+				base(global::WindowsFormsApp1.Properties.Settings.Default.DBQuanLyThuVienConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -144,6 +144,14 @@ namespace WindowsFormsApp1
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idDG, outputresult);
 			outputresult = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteSach")]
+		public int deleteSach([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idSach, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> returnvalue)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idSach, returnvalue);
+			returnvalue = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
 		

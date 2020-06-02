@@ -67,6 +67,7 @@ namespace WindowsFormsApp1.BUS
             ck.DisplayMember = "TenSach";
             ck.ValueMember = "MaSach";
             ck.SelectedIndex = -1;
+            //ck.SetItemChecked(0, true);
             
 
 
@@ -76,14 +77,19 @@ namespace WindowsFormsApp1.BUS
             dg.DataSource = pmDAO.listCTTPM(idPM);
             for (int i = 0; i < dg.Rows.Count; i++)
             {
-                foreach (var item in ck.Items)
-                {
-                    if ((item as SACH).MaSach == (int)dg.Rows[i].Cells["MaSach"].Value)
+                 for (int j = 0; j < ck.Items.Count; j++)
+                 {
+                     var item = ck.Items[j];
+                    if (dg.Rows[i].Cells["MaSach"].Value != null)
                     {
-                        ck.SetItemChecked()
+                        if ((item as SACH).MaSach == (int)dg.Rows[i].Cells["MaSach"].Value)
+                        {
+                            ck.SetItemChecked(j, true);
+                            ck.SetItemCheckState(j, CheckState.Indeterminate);
+                        }
                     }
-                }
-                
+                         
+                 }
             }
            
         }
@@ -113,10 +119,10 @@ namespace WindowsFormsApp1.BUS
             pmDAO.DeletePMDetail(idCTPM);
 
         }
-        public void traSachPMDetail(int idCTPM, DateTime NgayTra)
+        public void traSachPMDetail(int idPM,int idSach, DateTime NgayTra)
         {
           
-                pmDAO.GiveBookBackDetail(idCTPM, NgayTra);
+                pmDAO.GiveBookBackDetail(idPM,idSach, NgayTra);
             
             
         }
