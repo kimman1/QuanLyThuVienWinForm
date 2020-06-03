@@ -11,7 +11,25 @@ namespace WindowsFormsApp1.BUS
     class BUS_PM
     {
         PhieuMuonDAO pmDAO = new PhieuMuonDAO();
-        
+        public void loadCBNV(ComboBox cb)
+        {
+            cb.DataSource = null;
+            cb.DataSource = pmDAO.loadcbNV();
+            cb.DisplayMember = "HoTenNhanVien";
+            cb.ValueMember = "MaNhanVien";
+            cb.SelectedIndex = -1;
+            cb.Text = "--Select--";
+        }
+        public void loadCBDG(ComboBox cb)
+        {
+            cb.DataSource = null;
+            cb.DataSource = pmDAO.listdg();
+            cb.DisplayMember = "HoTenDocGia";
+            cb.ValueMember = "MaDocGia";
+            cb.SelectedIndex = -1;
+            cb.Text = "--Select--";
+        }
+
         public void layDSPM(DataGridView dg)
         {
             dg.DataSource = pmDAO.listPM();
@@ -26,7 +44,7 @@ namespace WindowsFormsApp1.BUS
         }
         public void xoaPM(int MaDocGia)
         {
-            int result = pmDAO.PMtest(MaDocGia); //pmDAO.DeletePM(MaDocGia);
+            int result = pmDAO.DeletePM(MaDocGia); //pmDAO.DeletePM(MaDocGia);
              if (result == 0 || result == -1)
              {
                  MessageBox.Show("Có lỗi trong quá trình xóa. Kiểm tra chi tiết PM", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);

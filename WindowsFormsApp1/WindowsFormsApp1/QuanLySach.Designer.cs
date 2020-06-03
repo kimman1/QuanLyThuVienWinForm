@@ -31,7 +31,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.GridViewSach = new System.Windows.Forms.DataGridView();
             this.btnThoatSach = new System.Windows.Forms.Button();
-            this.btnSuaSach = new System.Windows.Forms.Button();
             this.btnXoaSach = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -92,17 +91,6 @@
             this.btnThoatSach.UseVisualStyleBackColor = true;
             this.btnThoatSach.Click += new System.EventHandler(this.BtnThoatSach_Click);
             // 
-            // btnSuaSach
-            // 
-            this.btnSuaSach.Location = new System.Drawing.Point(261, 25);
-            this.btnSuaSach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSuaSach.Name = "btnSuaSach";
-            this.btnSuaSach.Size = new System.Drawing.Size(117, 83);
-            this.btnSuaSach.TabIndex = 2;
-            this.btnSuaSach.Text = "Sửa";
-            this.btnSuaSach.UseVisualStyleBackColor = true;
-            this.btnSuaSach.Click += new System.EventHandler(this.BtnSuaSach_Click);
-            // 
             // btnXoaSach
             // 
             this.btnXoaSach.Location = new System.Drawing.Point(135, 25);
@@ -129,7 +117,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnThoatSach);
-            this.groupBox2.Controls.Add(this.btnSuaSach);
             this.groupBox2.Controls.Add(this.btnXoaSach);
             this.groupBox2.Controls.Add(this.btnThemSach);
             this.groupBox2.Location = new System.Drawing.Point(567, 366);
@@ -344,7 +331,6 @@
 
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnThoatSach;
-        private System.Windows.Forms.Button btnSuaSach;
         private System.Windows.Forms.Button btnXoaSach;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;

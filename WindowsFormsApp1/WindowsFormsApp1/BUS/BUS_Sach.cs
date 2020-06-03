@@ -43,5 +43,11 @@ namespace WindowsFormsApp1.BUS
                 MessageBox.Show("Xóa thành công!", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        public void timSach(DataGridView dg, string searchString)
+        {
+            List<SACH> listSach = sachdao.findSach(searchString);
+            dg.DataSource = null;
+            dg.DataSource = listSach;
+        }
     }
 }

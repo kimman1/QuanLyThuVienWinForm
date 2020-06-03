@@ -25,6 +25,12 @@ namespace WindowsFormsApp1.DAO
             db.deleteSach(idSach, ref returnvalue);
             return (int)returnvalue;
         }
+        public List<SACH> findSach(string searchString)
+        {
+            string seachstring = searchString.Trim();
+           var p = db.SACHes.Where(s => s.TenSach.Contains(seachstring) || s.TacGia.Contains(seachstring) || s.NhaXuatBan.Contains(seachstring)).ToList();
+            return p;
+        }
 
     }
 }

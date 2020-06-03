@@ -118,46 +118,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void BtnSuaSach_Click(object sender, EventArgs e)
-        {
-            if (id == -1)
-            {
-                ErrorMessage("Vui lòng chọn sách !!!","Data Error");
-            }
-            else 
-            {
-                if (txtTenSach.Text.Trim().Equals(""))
-                {
-                    ErrorMessage("Điền tên sách!!!", "Error");
-                }
-                else if (txtNXB.Text.Trim().Equals(""))
-                {
-                    ErrorMessage("Điền tên NXB!!!", "Error");
-                }
-                else if (txtGiaTien.Text.Trim().Equals(""))
-                {
-                    ErrorMessage("Điền giá tiền!!!", "Error");
-                }
-                else if (txtTacGia.Text.Trim().Equals(""))
-                {
-                    ErrorMessage("Điền tên tác giả!!!", "Error");
-                }
-                else if (datePickerNXB.Value.Year.Equals(DateTime.Now.Year) && datePickerNXB.Value.Month.Equals(DateTime.Now.Month) && datePickerNXB.Value.Day.Equals(DateTime.Now.Day))
-                {
-                    ErrorMessage("Xem lại Ngày Xuất Bản", "Error");
-                }
-                else
-                {
-                    sach = new Sach();
-                    sach.SuaSach(txtTenSach.Text, txtTacGia.Text, datePickerNXB.Value, txtNXB.Text, txtGiaTien.Text, datePickerNgayNhap.Value, id);
-                    setNulForText();
-                    loadSach();
-                    id = -1;
-                }
-
-            }
-
-        }
+       
 
         private void BtnThoatSach_Click(object sender, EventArgs e)
         {
@@ -174,12 +135,7 @@ namespace WindowsFormsApp1
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            sach = new Sach();
-            DataTable dt = sach.TimKiemSach(txtSearch.Text);
-            GridViewSach.DataSource = null;
-            GridViewSach.DataSource = dt;
+            busSach.timSach(GridViewSach,txtSearch.Text);
         }
-
-       
     }
 }

@@ -11,7 +11,6 @@ namespace WindowsFormsApp1.DAO
 {
     class PhieuMuonDAO
     {
-        Connection con = new Connection();
         QLTVDataContext db = new QLTVDataContext();
         public IEnumerable<PhieuMuonViewModel> listPM()
         {
@@ -47,6 +46,17 @@ namespace WindowsFormsApp1.DAO
                                                     };
             return listCTPM;
         }
+        public List<NHANVIEN> listNV()
+        {
+            var p = db.NHANVIENs.Select(s => s).ToList();
+            return p;
+        }
+        public List<DOCGIA> listdg()
+        {
+            var p = db.DOCGIAs.Select(s => s).ToList();
+            return p;
+
+        }
         public void AddPM(PHIEUMUONSACH pm)
         {
             db.PHIEUMUONSACHes.InsertOnSubmit(pm);
@@ -59,17 +69,17 @@ namespace WindowsFormsApp1.DAO
             p.MaDocGia = MaDocGia;
             db.SubmitChanges();
         }
-      /*  public int DeletePM(int idPM)
+       public int DeletePM(int idPM)
         {
           
             int? result = -1;
             db.deletePM(idPM, ref result);
             db.SubmitChanges();
             return (int)result;
-        }*/
-        public int PMtest(int idPM)
+        }
+        /*public int PMtest(int idPM)
         {
-            string sql = "select MaPhieuMuon from PHIEUMUONSACH where not exists (select MaPhieuMuon from CHITIETPHIEUMUON where CHITIETPHIEUMUON.MaPhieuMuon = PHIEUMUONSACH.MaPhieuMuon)";
+            /*string sql = "select MaPhieuMuon from PHIEUMUONSACH where not exists (select MaPhieuMuon from CHITIETPHIEUMUON where CHITIETPHIEUMUON.MaPhieuMuon = PHIEUMUONSACH.MaPhieuMuon)";
             DataTable dt = con.Execute(sql);
             List<int> listMulti = new List<int>();
             int? idreturn = -1;
@@ -94,12 +104,12 @@ namespace WindowsFormsApp1.DAO
             }
             else
             {
-                //int? idst = idreturn;
-                db.deletePM(idPM, ref idreturn);
+                int? idst = -1;
+                db.deletePM(idPM, ref idst);
                 db.SubmitChanges();
-            }
-            return (int)idreturn;
-        }
+            //}
+            return (int)idst;
+        }*/
         /****************************** Chi tiet PM**************************/
         public void AddPMDetail(CHITIETPHIEUMUON pm)
         {

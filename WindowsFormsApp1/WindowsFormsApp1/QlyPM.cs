@@ -22,52 +22,31 @@ namespace WindowsFormsApp1
         {
             busPM.layDSPM(GridViewPTT);
         }
-       /* private void loadCBSach()
-        {
-            cbTenSach.DataSource = null;
-            PhieuMuon pm = new PhieuMuon();
-            DataTable dt = pm.layDSSach();
-            cbTenSach.DataSource = dt;
-            cbTenSach.DisplayMember = "TenSach";
-            cbTenSach.ValueMember = "MaSach";
-            cbTenSach.SelectedIndex = -1;
-            cbTenSach.Text = "--Select--";
 
-        }*/
         private void loadCBNV()
         {
-            //cbHoTenNV.Items.Clear();
-            cbHoTenNV.DataSource = null;
-            PhieuMuon pm = new PhieuMuon();
-            DataTable dt = pm.layDSNV();
-            cbHoTenNV.DisplayMember = "HoTenNhanVien";
-            cbHoTenNV.ValueMember = "MaNhanVien";
-            cbHoTenNV.DataSource = dt;
-            cbHoTenNV.SelectedIndex = -1;
-            cbHoTenNV.Text = "--Select--";
-        }
+           
+            busPM.loadComboNV(cbHoTenNV);
+            
+         }
         private void loadCBDocGia()
         {
-       
-            cbHoTenDocGia.DataSource = null;
-            PhieuMuon pm = new PhieuMuon();
-            DataTable dt = pm.layDSDG();
-            cbHoTenDocGia.DisplayMember = "HoTenDocGia";
-            cbHoTenDocGia.ValueMember = "MaDocGia";
-            cbHoTenDocGia.DataSource = dt;
-            cbHoTenDocGia.SelectedIndex = -1;
-            cbHoTenDocGia.Text = "--Select--";
+
+            busPM.loadCBDG(cbHoTenDocGia);
         }
         private void setNullForText()
         {
-            txtSoTienThu.Clear();
-            txtTienNo.Clear();
+          
             datePickerNM.Value = DateTime.Now;
             loadCBDocGia();
             loadCBNV();
-            //loadCBSach();
         }
-
+        private void loadForm()
+        {
+            loadPM();
+            loadCBDocGia();
+            loadCBNV();
+        }
         private void QlyPM_Load(object sender, EventArgs e)
         {
             setNullForText();
@@ -88,18 +67,23 @@ namespace WindowsFormsApp1
             }
         }
 
-       
-
         private void BtnXoa_Click(object sender, EventArgs e)
         {
             if (id != -1)
             {
-                // PhieuMuon pm = new PhieuMuon();
-                //pm.xoaPM(id);
-                busPM.xoaPM(id);
-                setNullForText();
-                loadPM();
-                id = -1;
+                DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn xóa không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dlrs == DialogResult.Yes)
+                {
+                    busPM.xoaPM(id);
+                    loadForm();
+                    id = -1;
+                }
+                else
+                {
+                    id = -1;
+                    return;
+                }
+                
             }
             else 
             {
@@ -111,74 +95,32 @@ namespace WindowsFormsApp1
         private void BtnThem_Click(object sender, EventArgs e)
         {
             int MaDocGia = -1 ;
-            int MaSach = -1;
             int MaNV = -1;
-            
-            
-            DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
-            if (rowDocGia != null)
+ 
+            if (cbHoTenDocGia.SelectedItem != null)
             {
-                 MaDocGia = (int)rowDocGia[0];
+                MaDocGia =(int)cbHoTenDocGia.SelectedValue;
             }
-           /* DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
-            if (rowSach != null)
+            if (cbHoTenNV.SelectedItem != null)
             {
-                MaSach = (int)rowSach[0];
-            }*/
-            DataRowView rowNV = (DataRowView)cbHoTenNV.SelectedItem;
-            if (rowNV != null)
-            {
-                MaNV = (int)rowNV[0];
+                MaNV = (int)cbHoTenNV.SelectedValue;
             }
             if (MaDocGia.Equals(-1))
             {
                 ErrorMessage("Vui lòng chọn Độc Giả", "Missing Customer ID");
             }
-            else 
+            else if (MaNV.Equals(-1))
             {
-                if (txtTienNo.Text.Trim().Equals("") && txtSoTienThu.Text.Trim().Equals(""))
-                {
-                    txtSoTienThu.Text = "0";
-                    txtTienNo.Text = "0";
-                }
-                //PhieuMuon pm = new PhieuMuon();
-                //pm.themPM(DateTime.Now, MaDocGia, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text), MaNV);
-                busPM.themPM(MaDocGia,MaNV);
-                setNullForText();
-                loadPM();
+                ErrorMessage("Vui lòng chọn Nhân Viên", "Missing Employee ID");
+            }
+            else
+            {
 
+                busPM.themPM(MaDocGia, MaNV);
+                loadForm();
             }
         }
 
-        private void BtnSua_Click(object sender, EventArgs e)
-        {
-            int MaDocGia = 0;
-           // int MaSach = 0;
-            if (id == -1)
-            {
-                ErrorMessage("Vui lòng chọn PM để sửa!!!","Data Error");
-            }
-            else 
-            {
-                DataRowView rowDocGia = (DataRowView)cbHoTenDocGia.SelectedItem;
-                if (rowDocGia != null)
-                {
-                    MaDocGia = (int)rowDocGia[0];
-                }
-                /* DataRowView rowSach = (DataRowView)cbTenSach.SelectedItem;
-                 if (rowSach != null)
-                 {
-                     MaSach = (int)rowSach[0];
-                 }
-                 PhieuMuon pm = new PhieuMuon();
-                 pm.suaPM(datePickerNM.Value, MaDocGia, id, MaSach, Int32.Parse(txtTienNo.Text), Int32.Parse(txtSoTienThu.Text));
-                 */
-                busPM.suaPM(id, MaDocGia);
-                setNullForText();
-                loadPM();
-                id = -1;
-            }
-        }
 
         private void GridViewPM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -230,7 +172,7 @@ namespace WindowsFormsApp1
                     busPM.xoaPM(a);
                 }
                 id = -1;
-                loadPM();
+                loadForm();
             }
             else 
             {
