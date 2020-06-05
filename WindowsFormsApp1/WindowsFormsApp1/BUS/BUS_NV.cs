@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.DAO;
+using WindowsFormsApp1.Common;
 namespace WindowsFormsApp1.BUS
 {
     class BUS_NV
     {
         NhanVienDAO nvDAO;
+        MessClass mess = new MessClass();
         public BUS_NV()
         {
             nvDAO = new NhanVienDAO();
+            
         }
         public void HienThiDSNV(DataGridView dg)
         {
@@ -38,7 +41,15 @@ namespace WindowsFormsApp1.BUS
         }
         public void XoaNV(int idNV)
         {
-            nvDAO.DeleteNV(idNV);
+            int result = nvDAO.DeleteNV(idNV);
+            if (result == -1 || result == 0)
+            {
+                mess.ErrorMessage("Có lỗi trong quá trình xóa. Vui lòng kiểm tra Phiếu Mượn Sách !!!", "Error");
+            }
+            else
+            {
+                mess.InfoMessage("Xóa thành công", "Success");
+            }
         }
         public void SuaNV(int idNV, string name, DateTime NgaySinh, string address, string phone, int MaBangCap)
         {

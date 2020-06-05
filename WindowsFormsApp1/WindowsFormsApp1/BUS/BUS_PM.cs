@@ -85,7 +85,7 @@ namespace WindowsFormsApp1.BUS
             ck.DisplayMember = "TenSach";
             ck.ValueMember = "MaSach";
             ck.SelectedIndex = -1;
-            //ck.SetItemChecked(0, true);
+            
             
 
 

@@ -93,4 +93,9 @@
     <Parameter Name="outputresult" Type="System.Int32" DbType="Int" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.deleteNV" Method="deleteNV">
+    <Parameter Name="idNV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="outputresult" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

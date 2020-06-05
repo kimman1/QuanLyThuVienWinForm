@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WindowsFormsApp1.DAO
 {
@@ -16,8 +17,17 @@ namespace WindowsFormsApp1.DAO
         }
         public void addSach(SACH sach)
         {
-            db.SACHes.InsertOnSubmit(sach);
-            db.SubmitChanges();
+            bool isDuplicate = db.SACHes.Any(s => s.TacGia.Trim() == sach.TacGia.Trim() && s.TenSach.Trim() == sach.TenSach.Trim());
+            if (isDuplicate != true)
+            {
+                db.SACHes.InsertOnSubmit(sach);
+                db.SubmitChanges();
+            }
+            else
+            {
+                MessageBox.Show("Sách thêm đã có trong kho dữ liệu!!!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
+
         }
         public int deleteSach(int idSach)
         {

@@ -33,20 +33,16 @@ namespace WindowsFormsApp1.DAO
             var p = db.BANGCAPs.Select(s => s).ToList();
             return p;
         }
-        public void DeleteNV(int idNhanVien)
+        public int DeleteNV(int idNhanVien)
         {
-            var p = db.NHANVIENs.Where(s => s.MaNhanVien == idNhanVien).FirstOrDefault();
-            db.NHANVIENs.DeleteOnSubmit(p);
-            db.SubmitChanges();
+            int? returnValue = -1;
+            db.deleteNV(idNhanVien, ref returnValue);
+            return (int)returnValue;
+            
         }
         public void AddNV(NHANVIEN nv)
         {
-            /*NHANVIEN nv = new NHANVIEN();
-            nv.HoTenNhanVien = HoTenNhanVien;
-            nv.NgaySinh = NgaySinh;
-            nv.DiaChi = DiaChi;
-            nv.DienThoai = DienThoai;
-            nv.MaBangCap = MaBangCap;*/
+        
             db.NHANVIENs.InsertOnSubmit(nv);
             db.SubmitChanges();
         }

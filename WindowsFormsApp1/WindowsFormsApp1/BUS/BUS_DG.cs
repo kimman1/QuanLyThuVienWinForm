@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.DAO;
-
+using WindowsFormsApp1.Common;
 namespace WindowsFormsApp1.BUS
 {
     class BUS_DG
     {
         DocGiaDAO dgDAO = new DocGiaDAO();
+        MessClass mess = new MessClass();
         public void HienThiDG(DataGridView dg)
         {
             dg.DataSource = null;
@@ -46,11 +47,13 @@ namespace WindowsFormsApp1.BUS
             
             if (result == 0)
             {
-                MessageBox.Show("Có lỗi trong quá trình xóa. Kiểm tra Phiếu Mượn", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mess.ErrorMessage("Có lỗi trong quá trình xóa. Kiểm tra Phiếu Mượn", "Error");
+               
             }
             else
             {
-                MessageBox.Show("Xoá thành công", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mess.InfoMessage("Xoá thành công", "Information");
+               
             }
         }
     }

@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
     public partial class QuanLySach : Form
     {
         BUS_Sach busSach = new BUS_Sach();
-        Sach sach;
         int id = -1;
         public QuanLySach()
         {

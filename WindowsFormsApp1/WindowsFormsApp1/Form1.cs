@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.BUS;
-
+using WindowsFormsApp1.Common;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        //NhanVien nv = new NhanVien();
+        MessClass mess = new MessClass();
         BUS_NV busNV = new BUS_NV();
         int id = -1;
         int idBangCap;
@@ -24,17 +24,11 @@ namespace WindowsFormsApp1
         public void loadNhanVien()
         {
 
-            //DataTable dt = nv.LayDSNhanVien();
-            //GridViewIndex.DataSource = nvDao.ListNV();
             busNV.HienThiDSNV(GridViewIndex);
         }
         public void loadBangCap()
         {
-            /*DataTable dt = nv.LayDSBangCap();
-            cbBangCap.DataSource = null;
-            cbBangCap.DataSource = dt;
-            cbBangCap.DisplayMember = "TenBangCap";
-            cbBangCap.ValueMember = "MaBangCap";*/
+           
             busNV.HienThiDSBC(cbBangCap);
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -59,7 +53,6 @@ namespace WindowsFormsApp1
         public void setNullforText()
         {
             txtAddress.Clear();
-            
             txtName.Clear();
             txtPhone.Clear();
             datePickerNgaySinh.Value = DateTime.Now;
@@ -68,26 +61,30 @@ namespace WindowsFormsApp1
         {
             if (txtName.Text.Equals(""))
             {
-                MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mess.ErrorMessage("Nhập Tên Nhân Viên", "Error!!!");
+                
             }
             else if (txtAddress.Text.Equals(""))
             {
-                MessageBox.Show("Nhập Địa Chỉ", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mess.ErrorMessage("Nhập Địa Chỉ", "Error!!!");
+           
             }
             else if (txtPhone.Text.Equals(""))
             {
-                MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mess.ErrorMessage("Nhập SDT Nhân Viên", "Error!!!");
+               
             }
             else if ((DateTime.Now.Year - datePickerNgaySinh.Value.Year) < 18)
             {
-                MessageBox.Show("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mess.ErrorMessage("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!");
             }
             else
             {
-                //nv.ThemNV(txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, (int)cbBangCap.SelectedValue);
+                
                 busNV.ThemNV(txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, (int)cbBangCap.SelectedValue);
                 setNullforText();
                 loadNhanVien();
+                loadBangCap();
             }
            
         }
@@ -95,7 +92,7 @@ namespace WindowsFormsApp1
         {
             if (id == -1)
             {
-                ErrorMessage("Vui lòng chọn nhân viên để xóa!!!", "DataError");
+                mess.ErrorMessage("Vui lòng chọn nhân viên để xóa!!!", "DataError");
             }
             else
             {
@@ -111,7 +108,7 @@ namespace WindowsFormsApp1
                 {
                     setNullforText();
                     id = -1;
-                    return;
+                    
                 }
             }
          
@@ -123,29 +120,32 @@ namespace WindowsFormsApp1
             int MaBangCap = (int) cbBangCap.SelectedValue;
             if (IdNhanVien == -1)
             {
-                ErrorMessage("Vui lòng chọn nhân viên để sửa !!!!", "Data Error");
+                mess.ErrorMessage("Vui lòng chọn nhân viên để sửa !!!!", "Data Error");
             }
             else 
             {
                 if (txtName.Text.Equals(""))
                 {
-                    MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mess.ErrorMessage("Nhập Tên Nhân Viên", "Error!!!");
+                   
                 }
                 else if (txtAddress.Text.Equals(""))
                 {
-                    MessageBox.Show("Nhập Địa Chỉ", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mess.ErrorMessage("Nhập Địa Chỉ", "Error!!!");
                 }
                 else if (txtPhone.Text.Equals(""))
                 {
-                    MessageBox.Show("Nhập Tên Nhân Viên", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mess.ErrorMessage("Nhập Tên Nhân Viên", "Error!!!");
+                  
                 }
                 else if ((DateTime.Now.Year - datePickerNgaySinh.Value.Year) < 18)
                 {
-                    MessageBox.Show("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mess.ErrorMessage("Vui lòng chọn ngày sinh. Lưu ý: Tuổi phải lớn hơn 18", "Error!!!");
+                   
                 }
                 else
                 {
-                    //nv.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
+                   
                     busNV.SuaNV(IdNhanVien, txtName.Text, datePickerNgaySinh.Value, txtAddress.Text, txtPhone.Text, MaBangCap);
                     setNullforText();
                     loadNhanVien();
@@ -187,10 +187,6 @@ namespace WindowsFormsApp1
                 cbBangCap.SelectedValue = row.Cells[5].Value;
                 idBangCap = (int) row.Cells[5].Value;
             }
-        }
-        public void ErrorMessage(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnQLyPTT_Click(object sender, EventArgs e)

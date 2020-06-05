@@ -71,6 +71,7 @@
             // 
             // GridViewSach
             // 
+            this.GridViewSach.AllowUserToAddRows = false;
             this.GridViewSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridViewSach.Location = new System.Drawing.Point(15, 29);
             this.GridViewSach.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

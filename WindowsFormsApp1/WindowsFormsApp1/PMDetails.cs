@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.BUS;
-
+using WindowsFormsApp1.Common;
 namespace WindowsFormsApp1
 {
     public partial class PMDetails : Form
@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         int idCTPM = -1;
         int idSach = -1;
         int flagThemclick = -1;
+        MessClass mess = new MessClass();
         BUS_PM busPM = new BUS_PM();
         public PMDetails(int id)
         {
@@ -79,14 +80,14 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
+                    mess.ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
                 }
                 
             }
             else
             {
                 
-                ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
+                mess.ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
                 loadForm();
             }
             
@@ -118,7 +119,7 @@ namespace WindowsFormsApp1
         {
             if (idCTPM == -1)
             {
-                ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
+                mess.ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
             }
             else
             {
@@ -140,10 +141,6 @@ namespace WindowsFormsApp1
             {
                 return;
             }
-        }
-        public void ErrorMessage(string message, string title)
-        {
-            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void GridViewPMDetail_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -180,42 +177,10 @@ namespace WindowsFormsApp1
             }
             else
             {
-                ErrorMessage("Vui lòng chọn ít nhất 1 Chi tiết phiếu!!!","Data Error");
+                mess.ErrorMessage("Vui lòng chọn ít nhất 1 Chi tiết phiếu!!!","Data Error");
             }
            
            
-        }
-
-        private void btnXoaCheckBox_Click(object sender, EventArgs e)
-        {
-           /* if (idCTPM != -1)
-            {
-                //PhieuMuon pm = new PhieuMuon();
-                List<int> listID = new List<int>();
-                foreach (DataGridViewRow check in GridViewPMDetail.Rows)
-                {
-                    if ((bool)check.Cells["status"].FormattedValue)
-                    {
-                        listID.Add((int)check.Cells["MaCTPM"].Value);
-                    }
-                    else
-                    {
-                        idCTPM = -1;
-                    }
-                    
-                }
-                foreach (int a in listID)
-                {
-                    busPM.xoaPMDetail(a);
-                }
-                idCTPM = -1;
-                loadForm();
-                
-            }
-            else
-            {
-                ErrorMessage("Vui lòng chọn ít nhất một checkbox", "Missing ID");
-            }*/
         }
 
         private void BtnLuu_Click(object sender, EventArgs e)
@@ -235,7 +200,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!","Data Check Error");
+                mess.ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!","Data Check Error");
             }
             GridViewPMDetail.Enabled = true;
             loadForm();

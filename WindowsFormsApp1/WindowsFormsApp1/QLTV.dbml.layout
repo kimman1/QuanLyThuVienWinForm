@@ -65,7 +65,7 @@
         <classShapeMoniker Id="46bfb695-c099-4335-a9e0-6cc175f77a36" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.78929768880208); (3.5 : 4.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 4.78929768880208); (3.04166666666667 : 4.78929768880208 : JumpStart); (3.20833333333333 : 4.78929768880208 : JumpEnd); (3.5 : 4.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/QLTVDataContext/DOCGIA/DOCGIA_PHIEUMUONSACH" />
       <nodes>
         <classShapeMoniker Id="be9fe2c7-fd0a-46a0-9eb0-c218318f950a" />

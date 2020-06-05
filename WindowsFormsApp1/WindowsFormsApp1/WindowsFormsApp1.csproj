@@ -54,6 +54,7 @@
     <Compile Include="BUS\BUS_PhieuThuTien.cs" />
     <Compile Include="BUS\BUS_PM.cs" />
     <Compile Include="BUS\BUS_Sach.cs" />
+    <Compile Include="Common\MessClass.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="DAO\DocGiaDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />

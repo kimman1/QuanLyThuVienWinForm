@@ -162,6 +162,14 @@ namespace WindowsFormsApp1
 			outputresult = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteNV")]
+		public int deleteNV([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> idNV, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] ref System.Nullable<int> outputresult)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), idNV, outputresult);
+			outputresult = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BANGCAP")]
