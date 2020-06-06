@@ -41,11 +41,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnThem = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
+            this.btnThem = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewPMDetail)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -54,7 +52,7 @@
             // 
             // btnTraSach
             // 
-            this.btnTraSach.Location = new System.Drawing.Point(581, 23);
+            this.btnTraSach.Location = new System.Drawing.Point(266, 29);
             this.btnTraSach.Name = "btnTraSach";
             this.btnTraSach.Size = new System.Drawing.Size(128, 83);
             this.btnTraSach.TabIndex = 27;
@@ -176,14 +174,14 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(1288, 355);
+            this.groupBox3.Size = new System.Drawing.Size(1288, 337);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(716, 23);
+            this.btnThoat.Location = new System.Drawing.Point(401, 29);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(117, 83);
@@ -192,47 +190,33 @@
             this.btnThoat.UseVisualStyleBackColor = true;
             this.btnThoat.Click += new System.EventHandler(this.BtnThoat_Click);
             // 
-            // btnSua
-            // 
-            this.btnSua.Location = new System.Drawing.Point(320, 23);
-            this.btnSua.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(117, 83);
-            this.btnSua.TabIndex = 2;
-            this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.BtnSua_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Location = new System.Drawing.Point(195, 23);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(117, 83);
-            this.btnXoa.TabIndex = 1;
-            this.btnXoa.Text = "Xoá";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.BtnXoa_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnTraSach);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnLuu);
-            this.groupBox2.Controls.Add(this.btnSua);
-            this.groupBox2.Controls.Add(this.btnXoa);
             this.groupBox2.Controls.Add(this.btnThem);
-            this.groupBox2.Location = new System.Drawing.Point(341, 380);
+            this.groupBox2.Location = new System.Drawing.Point(526, 380);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(855, 128);
+            this.groupBox2.Size = new System.Drawing.Size(670, 128);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             // 
+            // btnLuu
+            // 
+            this.btnLuu.Location = new System.Drawing.Point(132, 29);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(128, 83);
+            this.btnLuu.TabIndex = 28;
+            this.btnLuu.Text = "Lưu CTPM";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.BtnLuu_Click);
+            // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(70, 23);
+            this.btnThem.Location = new System.Drawing.Point(8, 29);
             this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(117, 83);
@@ -241,21 +225,11 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.BtnThem_Click);
             // 
-            // btnLuu
-            // 
-            this.btnLuu.Location = new System.Drawing.Point(444, 23);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(128, 83);
-            this.btnLuu.TabIndex = 28;
-            this.btnLuu.Text = "Lưu CTPM";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.BtnLuu_Click);
-            // 
             // PMDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1324, 749);
+            this.ClientSize = new System.Drawing.Size(1324, 893);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label8);
@@ -287,8 +261,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.CheckedListBox checklistSach;

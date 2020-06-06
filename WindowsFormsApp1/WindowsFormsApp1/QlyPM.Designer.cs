@@ -30,6 +30,7 @@
         {
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnXoaCheckBox = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
@@ -44,7 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.datePickerNM = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnXoaCheckBox = new System.Windows.Forms.Button();
+            this.btnNhapLai = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewPTT)).BeginInit();
@@ -66,20 +67,32 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnNhapLai);
+            this.groupBox2.Controls.Add(this.btnXoaCheckBox);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnXoa);
             this.groupBox2.Controls.Add(this.btnThem);
-            this.groupBox2.Location = new System.Drawing.Point(567, 431);
+            this.groupBox2.Location = new System.Drawing.Point(433, 432);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(582, 152);
+            this.groupBox2.Size = new System.Drawing.Size(715, 152);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
+            // btnXoaCheckBox
+            // 
+            this.btnXoaCheckBox.Location = new System.Drawing.Point(12, 29);
+            this.btnXoaCheckBox.Name = "btnXoaCheckBox";
+            this.btnXoaCheckBox.Size = new System.Drawing.Size(128, 83);
+            this.btnXoaCheckBox.TabIndex = 19;
+            this.btnXoaCheckBox.Text = "Xóa danh sách đã chọn";
+            this.btnXoaCheckBox.UseVisualStyleBackColor = true;
+            this.btnXoaCheckBox.Click += new System.EventHandler(this.btnXoaList_Click);
+            // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(387, 43);
+            this.btnThoat.Location = new System.Drawing.Point(522, 29);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(117, 83);
@@ -90,7 +103,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(135, 43);
+            this.btnXoa.Location = new System.Drawing.Point(272, 29);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(117, 83);
@@ -101,7 +114,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(9, 43);
+            this.btnThem.Location = new System.Drawing.Point(147, 29);
             this.btnThem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(117, 83);
@@ -228,22 +241,22 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Ngày mượn:";
             // 
-            // btnXoaCheckBox
+            // btnNhapLai
             // 
-            this.btnXoaCheckBox.Location = new System.Drawing.Point(434, 474);
-            this.btnXoaCheckBox.Name = "btnXoaCheckBox";
-            this.btnXoaCheckBox.Size = new System.Drawing.Size(128, 83);
-            this.btnXoaCheckBox.TabIndex = 19;
-            this.btnXoaCheckBox.Text = "Xóa danh sách đã chọn";
-            this.btnXoaCheckBox.UseVisualStyleBackColor = true;
-            this.btnXoaCheckBox.Click += new System.EventHandler(this.btnXoaList_Click);
+            this.btnNhapLai.Location = new System.Drawing.Point(397, 29);
+            this.btnNhapLai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNhapLai.Name = "btnNhapLai";
+            this.btnNhapLai.Size = new System.Drawing.Size(117, 83);
+            this.btnNhapLai.TabIndex = 20;
+            this.btnNhapLai.Text = "Nhập Lại ";
+            this.btnNhapLai.UseVisualStyleBackColor = true;
+            this.btnNhapLai.Click += new System.EventHandler(this.btnNhapLai_Click);
             // 
             // QlyPM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 749);
-            this.Controls.Add(this.btnXoaCheckBox);
+            this.ClientSize = new System.Drawing.Size(1228, 969);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -281,5 +294,6 @@
         private System.Windows.Forms.DataGridView GridViewPTT;
         private System.Windows.Forms.DataGridViewCheckBoxColumn status;
         private System.Windows.Forms.Button btnXoaCheckBox;
+        private System.Windows.Forms.Button btnNhapLai;
     }
 }

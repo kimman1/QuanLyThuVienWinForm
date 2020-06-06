@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
         {
             loadNhanVien();
             loadBangCap();
+            
         }
 
        
@@ -55,7 +56,7 @@ namespace WindowsFormsApp1
             txtAddress.Clear();
             txtName.Clear();
             txtPhone.Clear();
-            datePickerNgaySinh.Value = DateTime.Now;
+            datePickerNgaySinh.Value = DateTime.Now;    
         }
         private void BtnThem_Click(object sender, EventArgs e)
         {
@@ -189,10 +190,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void btnQLyPTT_Click(object sender, EventArgs e)
+        private void btnNhapLai_Click(object sender, EventArgs e)
         {
-            var FormPhieuThuTien = new FormPhieuThuTien();
-            FormPhieuThuTien.Show();
+            setNullforText();
         }
     }
 }

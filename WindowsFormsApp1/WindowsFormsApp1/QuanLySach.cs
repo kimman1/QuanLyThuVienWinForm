@@ -136,5 +136,10 @@ namespace WindowsFormsApp1
         {
             busSach.timSach(GridViewSach,txtSearch.Text);
         }
+
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+            setNulForText();
+        }
     }
 }

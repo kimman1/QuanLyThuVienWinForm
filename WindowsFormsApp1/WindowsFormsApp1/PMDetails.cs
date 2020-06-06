@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.BUS;
@@ -14,7 +9,6 @@ namespace WindowsFormsApp1
     public partial class PMDetails : Form
     {
         int idPM = -1;
-        int idCTPM = -1;
         int idSach = -1;
         int flagThemclick = -1;
         MessClass mess = new MessClass();
@@ -93,43 +87,6 @@ namespace WindowsFormsApp1
             
         }
 
-        private void BtnXoa_Click(object sender, EventArgs e)
-        {
-            /*if (idCTPM == -1)
-            {
-                ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
-            }
-            else
-            {
-                busPM.xoaPMDetail(idCTPM);
-                loadForm();
-                idCTPM = -1;
-            }*/
-            /*for (int i = 0; i < GridViewPMDetail.Rows.Count; i++)
-            {
-                if (GridViewPMDetail.Rows[i].Selected == true)
-                {
-                    MessageBox.Show(GridViewPMDetail.Rows[i].Cells["MaSach"].Value.ToString());
-                }
-            }*/
-           
-        }
-
-        private void BtnSua_Click(object sender, EventArgs e)
-        {
-            if (idCTPM == -1)
-            {
-                mess.ErrorMessage("Vui lòng chọn CTPM","Data Error Check");
-            }
-            else
-            {
-                busPM.suaPMDetail((int)cbTenSach.SelectedValue, idCTPM);
-                loadForm();
-                idCTPM = -1;
-            }
-          
-        }
-
         private void BtnThoat_Click(object sender, EventArgs e)
         {
             DialogResult dlrs = MessageBox.Show("Bạn có chắc chắn muốn thoát !", "Warning!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -179,31 +136,38 @@ namespace WindowsFormsApp1
             {
                 mess.ErrorMessage("Vui lòng chọn ít nhất 1 Chi tiết phiếu!!!","Data Error");
             }
-           
-           
         }
 
         private void BtnLuu_Click(object sender, EventArgs e)
         {
-            if (flagThemclick != -1)
+            DialogResult rs = MessageBox.Show("Bạn có chắc chắn muốn thêm. Vui lòng kiểm tra thật kỹ !!!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (rs == DialogResult.Yes)
             {
-                if (GridViewPMDetail.Rows.Count > 0)
+                if (flagThemclick != -1)
                 {
-                    for (int i = 0; i < GridViewPMDetail.Rows.Count; i++)
+                    if (GridViewPMDetail.Rows.Count > 0)
                     {
-                        int idSach = (int)GridViewPMDetail.Rows[i].Cells["MaSach"].Value;
-                        busPM.themPMDetail(idSach, idPM);
-                        flagThemclick = -1;
-                    }
+                        for (int i = 0; i < GridViewPMDetail.Rows.Count; i++)
+                        {
+                            int idSach = (int)GridViewPMDetail.Rows[i].Cells["MaSach"].Value;
+                            busPM.themPMDetail(idSach, idPM);
+                            flagThemclick = -1;
+                        }
 
+                    }
                 }
+                else
+                {
+                    mess.ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!", "Data Check Error");
+                }
+                GridViewPMDetail.Enabled = true;
+                loadForm();
             }
             else
             {
-                mess.ErrorMessage("Vui lòng chọn ít nhất 1 tựa sách!!!","Data Check Error");
+                return;
             }
-            GridViewPMDetail.Enabled = true;
-            loadForm();
         }
+            
     }
 }

@@ -52,6 +52,7 @@
             this.GridViewDG = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnNhapLai = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -210,7 +211,7 @@
             // 
             // btnThoatDocGia
             // 
-            this.btnThoatDocGia.Location = new System.Drawing.Point(387, 43);
+            this.btnThoatDocGia.Location = new System.Drawing.Point(511, 43);
             this.btnThoatDocGia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThoatDocGia.Name = "btnThoatDocGia";
             this.btnThoatDocGia.Size = new System.Drawing.Size(117, 83);
@@ -254,15 +255,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnNhapLai);
             this.groupBox2.Controls.Add(this.btnThoatDocGia);
             this.groupBox2.Controls.Add(this.btnSuaDocGia);
             this.groupBox2.Controls.Add(this.btnXoaDocGia);
             this.groupBox2.Controls.Add(this.btnThemDocGia);
-            this.groupBox2.Location = new System.Drawing.Point(568, 385);
+            this.groupBox2.Location = new System.Drawing.Point(497, 386);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(582, 152);
+            this.groupBox2.Size = new System.Drawing.Size(662, 152);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             // 
@@ -273,7 +275,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(1094, 331);
+            this.groupBox3.Size = new System.Drawing.Size(1154, 331);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
@@ -286,7 +288,7 @@
             this.GridViewDG.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridViewDG.Name = "GridViewDG";
             this.GridViewDG.RowHeadersWidth = 62;
-            this.GridViewDG.Size = new System.Drawing.Size(1076, 292);
+            this.GridViewDG.Size = new System.Drawing.Size(1137, 292);
             this.GridViewDG.TabIndex = 14;
             this.GridViewDG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewDG_CellClick);
             // 
@@ -310,10 +312,21 @@
             this.label8.Location = new System.Drawing.Point(54, 3);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(1108, 77);
+            this.label8.Size = new System.Drawing.Size(1105, 77);
             this.label8.TabIndex = 13;
             this.label8.Text = "DANH MỤC ĐỘC GIẢ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnNhapLai
+            // 
+            this.btnNhapLai.Location = new System.Drawing.Point(386, 43);
+            this.btnNhapLai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNhapLai.Name = "btnNhapLai";
+            this.btnNhapLai.Size = new System.Drawing.Size(117, 83);
+            this.btnNhapLai.TabIndex = 4;
+            this.btnNhapLai.Text = "Nhập Lại";
+            this.btnNhapLai.UseVisualStyleBackColor = true;
+            this.btnNhapLai.Click += new System.EventHandler(this.btnNhapLai_Click);
             // 
             // QlyDocGia
             // 
@@ -363,5 +376,6 @@
         private System.Windows.Forms.DateTimePicker datePickerNgayLapThe;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView GridViewDG;
+        private System.Windows.Forms.Button btnNhapLai;
     }
 }

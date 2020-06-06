@@ -179,5 +179,10 @@ namespace WindowsFormsApp1
             }
             return status;
         }
+
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+            setNullForText();
+        }
     }
 }

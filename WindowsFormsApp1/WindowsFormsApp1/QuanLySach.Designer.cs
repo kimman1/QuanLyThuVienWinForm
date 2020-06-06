@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnNhapLai = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewSach)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnNhapLai);
             this.groupBox2.Controls.Add(this.btnThoatSach);
             this.groupBox2.Controls.Add(this.btnXoaSach);
             this.groupBox2.Controls.Add(this.btnThemSach);
@@ -302,6 +304,17 @@
             this.txtSearch.Size = new System.Drawing.Size(307, 53);
             this.txtSearch.TabIndex = 25;
             // 
+            // btnNhapLai
+            // 
+            this.btnNhapLai.Location = new System.Drawing.Point(260, 25);
+            this.btnNhapLai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNhapLai.Name = "btnNhapLai";
+            this.btnNhapLai.Size = new System.Drawing.Size(117, 83);
+            this.btnNhapLai.TabIndex = 4;
+            this.btnNhapLai.Text = "Nhập Lại";
+            this.btnNhapLai.UseVisualStyleBackColor = true;
+            this.btnNhapLai.Click += new System.EventHandler(this.btnNhapLai_Click);
+            // 
             // QuanLySach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -353,5 +366,6 @@
         private System.Windows.Forms.DataGridView GridViewSach;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnNhapLai;
     }
 }

@@ -50,7 +50,7 @@
             this.btnQLyDocGia = new System.Windows.Forms.Button();
             this.btnQlySach = new System.Windows.Forms.Button();
             this.btnQlyPM = new System.Windows.Forms.Button();
-            this.btnQLyPTT = new System.Windows.Forms.Button();
+            this.btnNhapLai = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridViewIndex)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -64,7 +64,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(1094, 290);
+            this.groupBox3.Size = new System.Drawing.Size(1149, 290);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thông tin chung";
@@ -76,7 +76,7 @@
             this.GridViewIndex.Name = "GridViewIndex";
             this.GridViewIndex.RowHeadersWidth = 62;
             this.GridViewIndex.RowTemplate.Height = 28;
-            this.GridViewIndex.Size = new System.Drawing.Size(1077, 296);
+            this.GridViewIndex.Size = new System.Drawing.Size(1135, 255);
             this.GridViewIndex.TabIndex = 11;
             this.GridViewIndex.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridViewIndex_CellClick);
             // 
@@ -94,21 +94,22 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnNhapLai);
             this.groupBox2.Controls.Add(this.btnThoat);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.btnXoa);
             this.groupBox2.Controls.Add(this.btnThem);
-            this.groupBox2.Location = new System.Drawing.Point(548, 337);
+            this.groupBox2.Location = new System.Drawing.Point(522, 338);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(582, 152);
+            this.groupBox2.Size = new System.Drawing.Size(682, 152);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(387, 43);
+            this.btnThoat.Location = new System.Drawing.Point(511, 42);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(117, 83);
@@ -294,23 +295,22 @@
             this.btnQlyPM.UseVisualStyleBackColor = true;
             this.btnQlyPM.Click += new System.EventHandler(this.BtnQlyPM_Click);
             // 
-            // btnQLyPTT
+            // btnNhapLai
             // 
-            this.btnQLyPTT.Location = new System.Drawing.Point(352, 473);
-            this.btnQLyPTT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnQLyPTT.Name = "btnQLyPTT";
-            this.btnQLyPTT.Size = new System.Drawing.Size(144, 83);
-            this.btnQLyPTT.TabIndex = 11;
-            this.btnQLyPTT.Text = "Quản Lý PTT";
-            this.btnQLyPTT.UseVisualStyleBackColor = true;
-            this.btnQLyPTT.Click += new System.EventHandler(this.btnQLyPTT_Click);
+            this.btnNhapLai.Location = new System.Drawing.Point(386, 43);
+            this.btnNhapLai.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNhapLai.Name = "btnNhapLai";
+            this.btnNhapLai.Size = new System.Drawing.Size(117, 83);
+            this.btnNhapLai.TabIndex = 4;
+            this.btnNhapLai.Text = "Nhập Lại";
+            this.btnNhapLai.UseVisualStyleBackColor = true;
+            this.btnNhapLai.Click += new System.EventHandler(this.btnNhapLai_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1224, 895);
-            this.Controls.Add(this.btnQLyPTT);
             this.Controls.Add(this.btnQlyPM);
             this.Controls.Add(this.btnQlySach);
             this.Controls.Add(this.btnQLyDocGia);
@@ -354,7 +354,7 @@
         private System.Windows.Forms.Button btnQlySach;
         private System.Windows.Forms.Button btnQlyPM;
         private System.Windows.Forms.DataGridView GridViewIndex;
-        private System.Windows.Forms.Button btnQLyPTT;
+        private System.Windows.Forms.Button btnNhapLai;
     }
 }
 

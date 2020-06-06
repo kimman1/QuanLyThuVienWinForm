@@ -134,8 +134,12 @@ namespace WindowsFormsApp1.DAO
         public void GiveBookBackDetail(int idPM,int idSach,DateTime NgayTra)
         {
            CHITIETPHIEUMUON p = db.CHITIETPHIEUMUONs.Where(s => s.MaPhieuMuon == idPM && s.MaSach == idSach).FirstOrDefault();
-            p.NgayTra = NgayTra;
-            db.SubmitChanges();
+            if (p.NgayTra == null)
+            {
+                p.NgayTra = NgayTra;
+                db.SubmitChanges();
+            }
+            
         }
         public List<SACH> loadCBSach()
         {
@@ -155,10 +159,6 @@ namespace WindowsFormsApp1.DAO
         public string HoTenDocGia { get; set; }
         public int MaNhanVien { get; set; }
         public string TenNV { get; set; }
-        /* public int SoTienNo { get; set; }
-         public int SoTienThu { get; set; }
-         public string HoTenNV { get; set; }
-         public DateTime NgayTra { get; set; }*/
     }
     public class CTPMViewModel
     {

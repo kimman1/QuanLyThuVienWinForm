@@ -187,5 +187,9 @@ namespace WindowsFormsApp1
             pm.Show();
         }
 
+        private void btnNhapLai_Click(object sender, EventArgs e)
+        {
+            setNullForText();
+        }
     }
 }

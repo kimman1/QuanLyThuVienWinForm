@@ -68,12 +68,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPhieuThuTien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPhieuThuTien.Designer.cs">
-      <DependentUpon>FormPhieuThuTien.cs</DependentUpon>
-    </Compile>
     <Compile Include="NhanVien.cs" />
     <Compile Include="PhieuMuon.cs" />
     <Compile Include="PMDetails.cs">
@@ -110,9 +104,6 @@
     <Compile Include="Sach.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPhieuThuTien.resx">
-      <DependentUpon>FormPhieuThuTien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PMDetails.resx">
       <DependentUpon>PMDetails.cs</DependentUpon>
