@@ -25,6 +25,8 @@ namespace WindowsFormsApp1
         {
 
             busNV.HienThiDSNV(GridViewIndex);
+            GridViewIndex.Columns["HoTenNV"].Width = GridViewIndex.Width * 2/ 10;
+            GridViewIndex.Columns["DienThoai"].Width = GridViewIndex.Width * 2 / 10;
         }
         public void loadBangCap()
         {
